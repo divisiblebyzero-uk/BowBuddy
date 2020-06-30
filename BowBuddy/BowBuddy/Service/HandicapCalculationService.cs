@@ -6,6 +6,9 @@ using BowBuddy.Model;
 
 namespace BowBuddy.Service
 {
+    /**
+     * Interpreted from: http://www.roystonarchery.org/new/wp-content/uploads/2013/09/Graduated-Handicap-Tables.pdf?e632e9
+     */
     public class HandicapCalculationService
     {
         private Dictionary<string, List<(int, int)>> HandicapTables = new Dictionary<string, List<(int, int)>>();
@@ -25,7 +28,7 @@ namespace BowBuddy.Service
 
         }
 
-        private List<(int, int)> GetHandicapTable(Round round)
+        public List<(int handicap, int score)> GetHandicapTable(Round round)
         {
             if (HandicapTables.ContainsKey(round.Name))
             {

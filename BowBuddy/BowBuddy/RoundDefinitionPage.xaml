@@ -20,9 +20,27 @@
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
-                            <StackLayout Orientation="Horizontal">
-                                <Label Text="{Binding DisplayString}" />
-                            </StackLayout>
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text="{Binding DisplayString}" />
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <ListView x:Name="HandicapList">
+            <ListView.Header>
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Handicap" />
+                    <Label Text="Score" />
+                </StackLayout>
+            </ListView.Header>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text="{Binding Item1}" />
+                            <Label Text="{Binding Item2}" />
+                        </StackLayout>
                     </ViewCell>
                 </DataTemplate>
             </ListView.ItemTemplate>
