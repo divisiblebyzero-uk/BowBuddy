@@ -10,13 +10,22 @@
     </ContentPage.ToolbarItems>
     <StackLayout Margin="20,35,20,25">
         <Label Text="{Binding Name}"
+               FontSize="Large"
                HorizontalOptions="Center" />
         <StackLayout Orientation="Horizontal">
-            <Label Text="Face Size:"/>
-            <Label Text="{Binding FaceSize.Value}"/>
-            <Label Text="{Binding FaceSize.Units}"/>
-            <Label Text="{Binding Imperial}"/>
+            <Label Text="{Binding Scoring}"/>
+            <Label Text="{Binding Venue}"/>
         </StackLayout>
-
+        <ListView ItemsSource="{Binding Distances}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                            <StackLayout Orientation="Horizontal">
+                                <Label Text="{Binding DisplayString}" />
+                            </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
     </StackLayout>
 </ContentPage>

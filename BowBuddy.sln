@@ -5,7 +5,9 @@ VisualStudioVersion = 16.0.30204.135
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BowBuddy.Android", "BowBuddy\BowBuddy.Android\BowBuddy.Android.csproj", "{E9CFF140-389B-466C-A4E8-002B2FE5A0E3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BowBuddy", "BowBuddy\BowBuddy\BowBuddy.csproj", "{B7C99704-A214-4755-BD57-B4EA4554EB22}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BowBuddy", "BowBuddy\BowBuddy\BowBuddy.csproj", "{B7C99704-A214-4755-BD57-B4EA4554EB22}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BowBuddy.Test", "BowBuddy.Test\BowBuddy.Test.csproj", "{F5F7ADAA-69A1-4987-93C1-252141F73B74}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -25,6 +27,10 @@ Global
 		{B7C99704-A214-4755-BD57-B4EA4554EB22}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B7C99704-A214-4755-BD57-B4EA4554EB22}.Release|Any CPU.Build.0 = Release|Any CPU
 		{B7C99704-A214-4755-BD57-B4EA4554EB22}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{F5F7ADAA-69A1-4987-93C1-252141F73B74}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F5F7ADAA-69A1-4987-93C1-252141F73B74}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F5F7ADAA-69A1-4987-93C1-252141F73B74}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F5F7ADAA-69A1-4987-93C1-252141F73B74}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -21,9 +21,7 @@ namespace BowBuddy
         {
             base.OnAppearing();
 
-            var rounds = new List<Round>();
-            rounds.Add(Round.JuniorNational);
-            rounds.Add(Round.National);
+            var rounds = RoundRegistry.Instance.Rounds.Values;
 
             listView.ItemsSource = rounds
                 .OrderBy(r => r.Name)
