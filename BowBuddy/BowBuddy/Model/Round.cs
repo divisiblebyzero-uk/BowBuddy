@@ -8,8 +8,16 @@ namespace BowBuddy.Model
     {
         public const string ScoringStyleImperial = "Imperial";
         public const string ScoringStyleMetric = "Metric";
+        public const string ScoringStyleWorcester = "Worcester";
+        public const string VenueIndoor = "Indoor";
+        public const string VenueOutdoor = "Outdoor";
+        public const string UnitsCentimetres = "cm";
+        public const string UnitsMetres = "m";
+        public const string UnitsYards = "yd";
+        public const string UnitsInches = "in";
+
         public string Name { get; set; }
-        public string Venue { get; set; } = "Outdoor";
+        public string Venue { get; set; } = VenueOutdoor;
         public string Scoring { get; set; } = ScoringStyleImperial;
         public RoundDistance[] Distances { get; set; }
     }
@@ -24,12 +32,14 @@ namespace BowBuddy.Model
         {
             switch (Units)
             {
-                case "cm":
+                case Round.UnitsCentimetres:
                     return ((double)Value) / 100;
-                case "m":
+                case Round.UnitsMetres:
                     return ((double)Value);
-                case "yds":
+                case Round.UnitsYards:
                     return ((double)Value) * 0.9144;
+                case Round.UnitsInches:
+                    return ((double) Value) * 0.0254;
                 default:
                     Console.WriteLine($"Unknown units {Units}");
                     return 0;
@@ -69,8 +79,8 @@ namespace BowBuddy.Model
                 Name = "Junior National",
                 Distances = new RoundDistance[2]
                 {
-                    new RoundDistance {Distance = new Measurement {Value = 40, Units = "yds"}, Arrows = 48, FaceSize = new Measurement{Value = 122, Units = "cm"}},
-                    new RoundDistance {Distance = new Measurement {Value = 30, Units = "yds"}, Arrows = 24, FaceSize = new Measurement{Value = 122, Units = "cm"}}
+                    new RoundDistance {Distance = new Measurement {Value = 40, Units = Round.UnitsYards}, Arrows = 48, FaceSize = new Measurement{Value = 122, Units = Round.UnitsCentimetres}},
+                    new RoundDistance {Distance = new Measurement {Value = 30, Units = Round.UnitsYards}, Arrows = 24, FaceSize = new Measurement{Value = 122, Units = Round.UnitsCentimetres}}
                 }
             };
 
@@ -79,10 +89,43 @@ namespace BowBuddy.Model
                 Name = "National",
                 Distances = new RoundDistance[2]
                 {
-                    new RoundDistance {Distance = new Measurement {Value = 60, Units = "yds"}, Arrows = 48, FaceSize = new Measurement{Value = 122, Units = "cm"}},
-                    new RoundDistance {Distance = new Measurement {Value = 50, Units = "yds"}, Arrows = 24, FaceSize = new Measurement{Value = 122, Units = "cm"}}
+                    new RoundDistance {Distance = new Measurement {Value = 60, Units = Round.UnitsYards}, Arrows = 48, FaceSize = new Measurement{Value = 122, Units = Round.UnitsCentimetres}},
+                    new RoundDistance {Distance = new Measurement {Value = 50, Units = Round.UnitsYards}, Arrows = 24, FaceSize = new Measurement{Value = 122, Units = Round.UnitsCentimetres}}
                 }
             };
+
+            Rounds["Portsmouth"] = new Round
+            {
+                Name = "Portsmouth",
+                Distances = new RoundDistance[1]
+                {
+                    new RoundDistance {Distance = new Measurement {Value = 20, Units = Round.UnitsYards}, Arrows = 60, FaceSize = new Measurement{Value = 60, Units = Round.UnitsCentimetres}}
+                },
+                Scoring = Round.ScoringStyleMetric,
+                Venue = Round.VenueIndoor
+            };
+
+            Rounds["Worcester"] = new Round
+            {
+                Name = "Worcester",
+                Distances = new RoundDistance[1]
+                {
+                    new RoundDistance {Distance = new Measurement {Value = 20, Units = Round.UnitsYards}, Arrows = 60, FaceSize = new Measurement{Value = 16, Units = Round.UnitsInches}}
+                },
+                Scoring = Round.ScoringStyleWorcester,
+                Venue = Round.VenueIndoor
+            };
+
+            Rounds["Frostbite"] = new Round
+            {
+                Name = "Frostbite",
+                Distances = new RoundDistance[1]
+                {
+                    new RoundDistance {Distance = new Measurement {Value = 30, Units = Round.UnitsMetres}, Arrows = 18, FaceSize = new Measurement{Value = 80, Units = Round.UnitsCentimetres}}
+                },
+                Scoring = Round.ScoringStyleMetric
+            };
+
         }
     }
 }

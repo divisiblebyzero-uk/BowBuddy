@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:microcharts="clr-namespace:Microcharts.Forms;assembly=Microcharts.Forms" 
              mc:Ignorable="d"
              x:Class="BowBuddy.RoundDefinitionPage">
     <ContentPage.ToolbarItems>
@@ -11,39 +12,35 @@
     <StackLayout Margin="20,35,20,25">
         <Label Text="{Binding Name}"
                FontSize="Large"
-               HorizontalOptions="Center" />
-        <StackLayout Orientation="Horizontal">
-            <Label Text="{Binding Scoring}"/>
-            <Label Text="{Binding Venue}"/>
+               HorizontalOptions="Center"
+               HeightRequest="50"
+               />
+        <StackLayout Orientation="Horizontal"
+                     HeightRequest="100"
+                     >
+            <StackLayout WidthRequest="100">
+                <Label Text="{Binding Scoring}"/>
+                <Label Text="{Binding Venue}"/>
+            </StackLayout>
+            <ListView ItemsSource="{Binding Distances}"
+                      WidthRequest="100"
+            >
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Orientation="Horizontal">
+                                <Label Text="{Binding DisplayString}" />
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
         </StackLayout>
-        <ListView ItemsSource="{Binding Distances}">
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <ViewCell>
-                        <StackLayout Orientation="Horizontal">
-                            <Label Text="{Binding DisplayString}" />
-                        </StackLayout>
-                    </ViewCell>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
-        <ListView x:Name="HandicapList">
-            <ListView.Header>
-                <StackLayout Orientation="Horizontal">
-                    <Label Text="Handicap" />
-                    <Label Text="Score" />
-                </StackLayout>
-            </ListView.Header>
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <ViewCell>
-                        <StackLayout Orientation="Horizontal">
-                            <Label Text="{Binding Item1}" />
-                            <Label Text="{Binding Item2}" />
-                        </StackLayout>
-                    </ViewCell>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
+        <Label Text="Handicaps"></Label>
+        <microcharts:ChartView x:Name="chartView"
+                                   HeightRequest="300"
+
+            />
     </StackLayout>
+    
 </ContentPage>

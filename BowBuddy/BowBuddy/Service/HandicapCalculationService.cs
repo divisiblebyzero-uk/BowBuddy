@@ -70,22 +70,22 @@ namespace BowBuddy.Service
                 }
                 return 9.0D - 2.0D * averageScore - Math.Exp(-Math.Pow(distance.FaceSize.InCentimetres() / 2.0D + 0.357D, 2.0D) / Math.Pow(rootMeanSquare, 2.0D));
             }
-/*            else if (scoringStyle == ScoringStyle.METRIC)
+            else if (scoring == Round.ScoringStyleMetric)
             {
                 for (int i = 1; i <= 10; i++)
                 {
-                    averageScore += Math.exp(-Math.pow(i * distance.getFace().getSize() / 20.0D + 0.357D, 2.0D) / Math.pow(rootMeanSquare, 2.0D));
+                    averageScore += Math.Exp(-Math.Pow(i * distance.FaceSize.InCentimetres() / 20.0D + 0.357D, 2.0D) / Math.Pow(rootMeanSquare, 2.0D));
                 }
                 return 10.0D - averageScore;
             }
-            else if (scoringStyle == ScoringStyle.WORCESTER)
+            else if (scoring == Round.ScoringStyleWorcester)
             {
                 for (int i = 1; i <= 5; i++)
                 {
-                    averageScore += Math.exp(-Math.pow(i * distance.getFace().getSize() / 10.0D + 0.357D, 2.0D) / Math.pow(rootMeanSquare, 2.0D));
+                    averageScore += Math.Exp(-Math.Pow(i * distance.FaceSize.InCentimetres() / 10.0D + 0.357D, 2.0D) / Math.Pow(rootMeanSquare, 2.0D));
                 }
                 return 5.0D - averageScore;
-            }*/
+            }
             else
             {
                 
