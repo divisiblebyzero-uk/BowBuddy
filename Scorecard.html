@@ -4,11 +4,38 @@
 			border-collapse: collapse; border: 1px solid black; text-align: center;
 		}
 		th, td {
-			padding: 15px;
+			font-family: sans-serif;
+			padding: 2px;
+		}
+		.circle {
+			padding: 1px 3px;
+			display: inline-block;
+			border-radius: 16px;
+			font-weight: bold;
+		}
+		.gold-circle {
+			color: black;
+			background-color: #ffff00;
+		}
+		.red-circle {
+			color: black;
+			background-color: #ff0000;
+		}
+		.blue-circle {
+			color: white;
+			background-color: #0004ff;
+		}
+		.black-circle {
+			color: white;
+			background-color: #000000;
+		}
+		.white-circle {
+			color: black;
+			background-color: #ffffff;
 		}
 	</style>
 	<body>
-		<table style="">
+		<table>
 			<tr>
 				<td colspan="6">End 1 Scores</td>
 				<td>E/T</td>
@@ -20,19 +47,19 @@
 				<td>R/T</td>
 			</tr>
 			<tr>
-				<td>X</td>
-				<td>9</td>
-				<td>7</td>
-				<td>7</td>
-				<td>M</td>
-				<td>M</td>
+				<td><span class="circle gold-circle">X</span></td>
+				<td><span class="circle gold-circle">9</span></td>
+				<td><span class="circle red-circle">7</span></td>
+				<td><span class="circle blue-circle">5</span></td>
+				<td><span class="circle black-circle">3</span></td>
+				<td><span class="circle white-circle">M</span></td>
 				<td>34</td>
-				<td>X</td>
-				<td>9</td>
-				<td>7</td>
-				<td>7</td>
-				<td>M</td>
-				<td>M</td>
+				<td><span class="circle gold-circle">X</span></td>
+				<td><span class="circle gold-circle">9</span></td>
+				<td><span class="circle red-circle">7</span></td>
+				<td><span class="circle blue-circle">5</span></td>
+				<td><span class="circle black-circle">3</span></td>
+				<td><span class="circle white-circle">M</span></td>
 				<td>34</td>
 				<td>2</td>
 				<td>68</td>

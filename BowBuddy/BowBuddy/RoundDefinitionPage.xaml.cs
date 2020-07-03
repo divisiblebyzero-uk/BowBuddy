@@ -33,7 +33,7 @@ namespace BowBuddy
 
             var round = (Round)BindingContext;
 
-            HandicapCalculationService calc = new HandicapCalculationService();
+            HandicapCalculationService calc = HandicapCalculationService.Instance;
 
             HandicapTable = calc.GetHandicapTable(round);
 

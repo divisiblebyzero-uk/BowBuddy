@@ -43,7 +43,7 @@ namespace BowBuddy.Service
                 dozen.Total.RunningTotal = scoreSheet.Total.RunningTotal;
             });
 
-            scoreSheet.Handicap = new HandicapCalculationService().CalculateHandicap(round, scoreSheet.Total.Score);
+            scoreSheet.Handicap = HandicapCalculationService.Instance.CalculateHandicap(round, scoreSheet.Total.Score);
 
 
         }

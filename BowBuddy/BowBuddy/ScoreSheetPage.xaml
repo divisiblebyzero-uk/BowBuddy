@@ -12,7 +12,7 @@
                 <Label Text="{Binding RoundName}" FontSize="16" />
             </StackLayout>
             <WebView x:Name="webView" WidthRequest="1000" HeightRequest="600" />
-            <Label Text="{Binding Handicap, StringFormat='Handicap: {0}'}" HeightRequest="100"/>
+            <Label x:Name="HandicapLabel" Text="Unknown Handicap" HeightRequest="100"/>
             <Label x:Name="NextHandicapScoreLabel" Text="Score X to reach the next handicap!" HeightRequest="100"/>
         </StackLayout>
     </ContentPage.Content>

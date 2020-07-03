@@ -11,6 +11,15 @@ namespace BowBuddy.Service
      */
     public class HandicapCalculationService
     {
+
+        private static readonly Lazy<HandicapCalculationService> instance = new Lazy<HandicapCalculationService>(() => new HandicapCalculationService());
+        public static HandicapCalculationService Instance => instance.Value;
+
+        private HandicapCalculationService()
+        {
+
+        }
+
         private Dictionary<string, List<(int, int)>> HandicapTables = new Dictionary<string, List<(int, int)>>();
 
         public int CalculateHandicap(Round round, int score)

@@ -107,6 +107,8 @@ namespace BowBuddy.Test
                 Assert.Equal(8, dozen.Total.Hits);
                 dozen.Ends.ForEach(end => Assert.Equal(34, end.EndTotal));
             });
+
+            Assert.Equal(68, scoreSheet.Handicap);
         }
     }
 }
