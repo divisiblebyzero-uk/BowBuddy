@@ -121,9 +121,23 @@ namespace BowBuddy.Model
                 Name = "Frostbite",
                 Distances = new RoundDistance[1]
                 {
-                    new RoundDistance {Distance = new Measurement {Value = 30, Units = Round.UnitsMetres}, Arrows = 18, FaceSize = new Measurement{Value = 80, Units = Round.UnitsCentimetres}}
+                    new RoundDistance {Distance = new Measurement {Value = 30, Units = Round.UnitsMetres}, Arrows = 36, FaceSize = new Measurement{Value = 80, Units = Round.UnitsCentimetres}}
                 },
                 Scoring = Round.ScoringStyleMetric
+            };
+
+            Rounds["Shop Range"] = new Round
+            {
+                Name = "Shop Range",
+                Distances = new RoundDistance[1]
+                {
+                    new RoundDistance
+                    {
+                        Distance = new Measurement {Value = 12, Units = Round.UnitsYards}, Arrows = 6,
+                        FaceSize = new Measurement {Value = 60, Units = Round.UnitsCentimetres}
+                    }
+                },
+                Venue = Round.VenueOutdoor
             };
 
         }

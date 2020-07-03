@@ -11,5 +11,7 @@
                HorizontalOptions="Center" />
         <Button Text="Rounds" 
                 Clicked="OnRoundsButtonClicked"/>
+        <Button Text="ScoreSheets" 
+                Clicked="OnScoreSheetsButtonClicked"/>
     </StackLayout>
 </ContentPage>

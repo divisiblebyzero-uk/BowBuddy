@@ -7,7 +7,7 @@ namespace BowBuddy.Test
 {
     public class TestHandicapCalculationService
     {
-        private HandicapCalculationService _service = new HandicapCalculationService();
+        private readonly HandicapCalculationService _service = new HandicapCalculationService();
         [Theory]
         [InlineData("Junior National", 397, 66)]
         [InlineData("Junior National", 410, 65)]

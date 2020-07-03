@@ -18,6 +18,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="ScoreSheetsListPage.xaml.cs">
+      <DependentUpon>ScoreSheetsListPage.xaml</DependentUpon>
+    </Compile>
     <Compile Update="RoundDefinitionPage.xaml.cs">
       <DependentUpon>RoundDefinitionPage.xaml</DependentUpon>
     </Compile>
@@ -27,6 +30,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Update="ScoreSheetPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="ScoreSheetsListPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="RoundDefinitionPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>

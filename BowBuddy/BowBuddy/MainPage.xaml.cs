@@ -25,5 +25,10 @@ namespace BowBuddy
         {
             await Navigation.PushAsync(new RoundsListPage());
         }
+
+        async void OnScoreSheetsButtonClicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new ScoreSheetsListPage());
+        }
     }
 }
