@@ -18,40 +18,69 @@ namespace BowBuddy
             InitializeComponent();
         }
 
-        protected void AddChildToGrid(string text, int rowNumber, int colNumber)
-        {
-            ScoresGrid.Children.Add(new Label { Text = text }, rowNumber= rowNumber, colNumber = colNumber);
-        }
-
-        protected void AddChildToGrid(int value, int rowNumber, int colNumber)
-        {
-            AddChildToGrid(value.ToString(), rowNumber, colNumber);
-        }
-
         protected override void OnAppearing()
         {
             base.OnAppearing();
+
+           
+
+            StringBuilder html = new StringBuilder();
+
+            html.Append("<html>");
+            html.Append("<style>table, th, td { border-collapse: collapse; border: 1px solid black;text-align: center;} th, td { padding: 3px; }</style>");
+            html.Append("<body><table>");
+            html.Append(
+                "<tr><td colspan='6'>End 1 Scores</td><td>E/T</td><td colspan='6'>End 2</td><td>E/T</td><td>G</td><td>S</td><td>H</td><td>R/T</td></tr>");
+
+
+
             var scoreSheet = (ScoreSheet) BindingContext;
             new ScoreCalculationService().CalculateScores(scoreSheet);
-            var rowNumber = 1;
+
             scoreSheet.Dozens.ForEach(dozen =>
                 {
-                    var colNumber = 0;
+                    html.Append("<tr>");
                     dozen.Ends.ForEach(end =>
                     {
                         foreach (string score in end.Scores)
                         {
-                            AddChildToGrid(score, colNumber++, rowNumber);
+                            html.Append($"<td>{score}</td>");
                         }
-                        AddChildToGrid(end.EndTotal, colNumber++, rowNumber);
+
+                        html.Append($"<td>{end.EndTotal}</td>");
                     });
-                    AddChildToGrid(dozen.Total.Golds, colNumber++, rowNumber);
-                    AddChildToGrid(dozen.Total.Score, colNumber++, rowNumber);
-                    AddChildToGrid(dozen.Total.Hits, colNumber++, rowNumber);
-                    AddChildToGrid(dozen.Total.RunningTotal, colNumber++, rowNumber);
-                    rowNumber++;
+                    html.Append($"<td>{dozen.Total.Golds}</td>");
+                    html.Append($"<td>{dozen.Total.Score}</td>");
+                    html.Append($"<td>{dozen.Total.Hits}</td>");
+                    html.Append($"<td>{dozen.Total.RunningTotal}</td>");
+                    html.Append("</tr>");
                 }
                 );
+            html.Append("<tr>");
+            html.Append("<td colspan='14'>GrandTotal</td>");
+            html.Append($"<td>{scoreSheet.Total.Golds}</td>");
+            html.Append($"<td>{scoreSheet.Total.Score}</td>");
+            html.Append($"<td>{scoreSheet.Total.Hits}</td>");
+            html.Append($"<td>{scoreSheet.Total.RunningTotal}</td>");
+            html.Append("</tr>");
+            html.Append("</table></body></html>");
+
+            webView.Source = new HtmlWebViewSource
+            {
+                Html = html.ToString()
+            };
+
+            if (scoreSheet.Handicap == 0)
+            {
+                NextHandicapScoreLabel.Text = "You already have the best handicap";
+            }
+            else
+            {
+                var hcs = new HandicapCalculationService();
+                int nextScore = hcs.GetHandicapTable(RoundRegistry.Instance.Rounds[scoreSheet.RoundName])
+                    .FirstOrDefault(entry => entry.handicap <= scoreSheet.Handicap).score;
+                NextHandicapScoreLabel.Text = $"Score {nextScore} to reach the next handicap";
+            }
         }
     }
 }

@@ -6,33 +6,14 @@
              mc:Ignorable="d"
              x:Class="BowBuddy.ScoreSheetPage">
     <ContentPage.Content>
-        <Grid WidthRequest="100" x:Name="ScoresGrid">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="Auto" />
-            </Grid.ColumnDefinitions>
-            <Label Grid.Column="0" Grid.ColumnSpan="7" Text="End"/>
-            <Label Grid.Column="7" Grid.ColumnSpan="7" Text="End"/>
-            <Label Grid.Column="14" Text="Golds"/>
-            <Label Grid.Column="15" Text="Score"/>
-            <Label Grid.Column="16" Text="Hits"/>
-            <Label Grid.Column="17" Text="R/T"/>
-        </Grid>
+        <StackLayout>
+            <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+                <Label Text="{Binding Date, StringFormat='{0:dd/MM/yyyy HH:mm:ss}'}" FontSize="16"/>
+                <Label Text="{Binding RoundName}" FontSize="16" />
+            </StackLayout>
+            <WebView x:Name="webView" WidthRequest="1000" HeightRequest="600" />
+            <Label Text="{Binding Handicap, StringFormat='Handicap: {0}'}" HeightRequest="100"/>
+            <Label x:Name="NextHandicapScoreLabel" Text="Score X to reach the next handicap!" HeightRequest="100"/>
+        </StackLayout>
     </ContentPage.Content>
 </ContentPage>
