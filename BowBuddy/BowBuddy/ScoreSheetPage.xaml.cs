@@ -78,6 +78,7 @@ namespace BowBuddy
             {
                 var hcs = new HandicapCalculationService();
                 int nextScore = hcs.GetHandicapTable(RoundRegistry.Instance.Rounds[scoreSheet.RoundName])
+                    .OrderByDescending(entry => entry.handicap)
                     .FirstOrDefault(entry => entry.handicap <= scoreSheet.Handicap).score;
                 NextHandicapScoreLabel.Text = $"Score {nextScore} to reach the next handicap";
             }
