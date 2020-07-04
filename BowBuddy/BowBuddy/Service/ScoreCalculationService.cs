@@ -8,6 +8,27 @@ namespace BowBuddy.Service
 {
     public class ScoreCalculationService
     {
+        private readonly Dictionary<(string ageGroup, string gender, string bowType),
+            List<(string classification, int minimumHandicap)>> ClassificationBoundaries = new Dictionary<(string ageGroup, string gender, string bowType), List<(string classification, int minimumHandicap)>>();
+
+        public ScoreCalculationService()
+        {
+            PopulateClassificationBoundaries();
+        }
+        private void PopulateClassificationBoundaries()
+        { 
+
+            ClassificationBoundaries[(ScoreSheet.AgeGroupAdult, ScoreSheet.GenderMale, ScoreSheet.BowTypeRecurve)] = new List<(string classification, int minimumHandicap)>
+            {
+                (ScoreSheet.Classification3rd, 58),
+                (ScoreSheet.Classification2nd, 50),
+                (ScoreSheet.Classification1st, 44),
+                (ScoreSheet.ClassificationBow, 36),
+                (ScoreSheet.ClassificationMB, 28),
+                (ScoreSheet.ClassificationGMB, 22)
+            };
+        }
+
         
         public void CalculateScores(ScoreSheet scoreSheet)
         {
@@ -45,6 +66,14 @@ namespace BowBuddy.Service
 
             scoreSheet.Handicap = HandicapCalculationService.Instance.CalculateHandicap(round, scoreSheet.Total.Score);
 
+            var lookupKey = (scoreSheet.AgeGroup, scoreSheet.Gender, scoreSheet.BowType);
+
+            if (ClassificationBoundaries.ContainsKey(lookupKey))
+            {
+                scoreSheet.Classification = ClassificationBoundaries[lookupKey]
+                    .OrderBy(v => v.minimumHandicap)
+                    .FirstOrDefault(v => v.minimumHandicap >= scoreSheet.Handicap).classification;
+            }
 
         }
 
@@ -76,34 +105,8 @@ namespace BowBuddy.Service
             }
         }
 
-    /*public string MinimumGoldScore { get; set; }
 
-    public int Score => Ends.Sum(e => e.Scores.Select(score =>
-    {
-        if (String.IsNullOrEmpty(score) || score == "M")
-        {
-            return 0;
-        }
-        if (score == "X")
-        {
-            return 10;
-        }
-        return int.Parse(score);
-
-    }).Sum());
-
-    public int Golds()
-    {
-        if (MinimumGoldScore == "X")
-        {
-            return Ends.Sum(e => e.Scores.Count(s => s == "X"));
-        }
-        else
-        {
-            return Ends.Sum(e => e.Scores.Count(s => int.Parse(s) >= int.Parse(MinimumGoldScore)));
-        }
-    }*/
-}
+    }
 
 
 }

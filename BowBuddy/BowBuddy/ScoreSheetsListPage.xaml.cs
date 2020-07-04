@@ -22,6 +22,9 @@ namespace BowBuddy
             return new ScoreSheet[] {
                 new ScoreSheet
             {
+                Gender = ScoreSheet.GenderMale,
+                BowType = ScoreSheet.BowTypeRecurve,
+                AgeGroup = ScoreSheet.AgeGroupAdult,
                 Date = DateTime.Now,
                 Dozens = new Dozen[]
                 {

@@ -17,6 +17,9 @@ namespace BowBuddy.Test
         {
             ScoreSheet scoreSheet = new ScoreSheet
             {
+                Gender = ScoreSheet.GenderMale,
+                BowType = ScoreSheet.BowTypeRecurve,
+                AgeGroup = ScoreSheet.AgeGroupAdult,
                 Date = DateTime.Now,
                 Dozens = new Dozen[]
                 {
@@ -26,11 +29,11 @@ namespace BowBuddy.Test
                         {
                             new End
                             {
-                                Scores = new string[] {"X","9","8","7","M","M"}
+                                Scores = new string[] {"X","X","X","X","7","M"}
                             },
                             new End
                             {
-                                Scores = new string[] {"X","9","8","7","M","M"}
+                                Scores = new string[] {"X","X","X","X","7","M"}
                             }
                         }.ToList()
                     },
@@ -40,11 +43,11 @@ namespace BowBuddy.Test
                         {
                             new End
                             {
-                                Scores = new string[] {"X","9","8","7","M","M"}
+                                Scores = new string[] {"X","X","X","X","7","M"}
                             },
                             new End
                             {
-                                Scores = new string[] {"X","9","8","7","M","M"}
+                                Scores = new string[] {"X","X","X","X","7","M"}
                             }
                         }.ToList()
                     },
@@ -54,11 +57,11 @@ namespace BowBuddy.Test
                         {
                             new End
                             {
-                                Scores = new string[] {"X","9","8","7","M","M"}
+                                Scores = new string[] {"X","X","X","X","7","M"}
                             },
                             new End
                             {
-                                Scores = new string[] {"X","9","8","7","M","M"}
+                                Scores = new string[] {"X","X","X","X","7","M"}
                             }
                         }.ToList()
                     },
@@ -68,11 +71,11 @@ namespace BowBuddy.Test
                         {
                             new End
                             {
-                                Scores = new string[] {"X","9","8","7","M","M"}
+                                Scores = new string[] {"X","X","X","X","7","M"}
                             },
                             new End
                             {
-                                Scores = new string[] {"X","9","8","7","M","M"}
+                                Scores = new string[] {"X","X","X","X","7","M"}
                             }
                         }.ToList()
                     },
@@ -82,11 +85,11 @@ namespace BowBuddy.Test
                         {
                             new End
                             {
-                                Scores = new string[] {"X","9","8","7","M","M"}
+                                Scores = new string[] {"X","X","X","X","7","M"}
                             },
                             new End
                             {
-                                Scores = new string[] {"X","9","8","7","M","M"}
+                                Scores = new string[] {"X","X","X","X","7","M"}
                             }
                         }.ToList()
                     }
@@ -96,19 +99,20 @@ namespace BowBuddy.Test
 
             _scoreCalculationService.CalculateScores(scoreSheet);
 
-            Assert.Equal(340, scoreSheet.Total.Score);
-            Assert.Equal(340, scoreSheet.Total.RunningTotal);
-            Assert.Equal(10, scoreSheet.Total.Golds);
-            Assert.Equal(40, scoreSheet.Total.Hits);
+            Assert.Equal(470, scoreSheet.Total.Score);
+            Assert.Equal(470, scoreSheet.Total.RunningTotal);
+            Assert.Equal(40, scoreSheet.Total.Golds);
+            Assert.Equal(50, scoreSheet.Total.Hits);
             scoreSheet.Dozens.ForEach(dozen =>
             {
-                Assert.Equal(68, dozen.Total.Score);
-                Assert.Equal(2, dozen.Total.Golds);
-                Assert.Equal(8, dozen.Total.Hits);
-                dozen.Ends.ForEach(end => Assert.Equal(34, end.EndTotal));
+                Assert.Equal(94, dozen.Total.Score);
+                Assert.Equal(8, dozen.Total.Golds);
+                Assert.Equal(10, dozen.Total.Hits);
+                dozen.Ends.ForEach(end => Assert.Equal(47, end.EndTotal));
             });
 
-            Assert.Equal(68, scoreSheet.Handicap);
+            Assert.Equal(53, scoreSheet.Handicap);
+            Assert.Equal("3rd", scoreSheet.Classification);
         }
     }
 }

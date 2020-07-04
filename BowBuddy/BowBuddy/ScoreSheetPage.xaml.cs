@@ -147,6 +147,7 @@ namespace BowBuddy
             };
 
             HandicapLabel.Text = $"Handicap: {scoreSheet.Handicap}";
+            ClassificationLabel.Text = $"Classification: {scoreSheet.Classification}";
 
             if (scoreSheet.Handicap == 0)
             {

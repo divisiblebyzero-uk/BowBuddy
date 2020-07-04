@@ -13,6 +13,7 @@
             </StackLayout>
             <WebView x:Name="webView" WidthRequest="1000" HeightRequest="600" />
             <Label x:Name="HandicapLabel" Text="Unknown Handicap" HeightRequest="100"/>
+            <Label x:Name="ClassificationLabel" Text="Unknown Classification" HeightRequest="100"/>
             <Label x:Name="NextHandicapScoreLabel" Text="Score X to reach the next handicap!" HeightRequest="100"/>
         </StackLayout>
     </ContentPage.Content>

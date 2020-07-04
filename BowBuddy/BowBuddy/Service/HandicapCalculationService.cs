@@ -21,7 +21,7 @@ namespace BowBuddy.Service
 
         }
 
-        private Dictionary<string, List<(int, int)>> HandicapTables = new Dictionary<string, List<(int, int)>>();
+        private readonly Dictionary<string, List<(int, int)>> HandicapTables = new Dictionary<string, List<(int, int)>>();
 
         public int CalculateHandicap(Round round, int score)
         {
