@@ -7,7 +7,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BowBuddy.Android", "BowBudd
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BowBuddy", "BowBuddy\BowBuddy\BowBuddy.csproj", "{B7C99704-A214-4755-BD57-B4EA4554EB22}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BowBuddy.Test", "BowBuddy.Test\BowBuddy.Test.csproj", "{F5F7ADAA-69A1-4987-93C1-252141F73B74}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BowBuddy.Test", "BowBuddy.Test\BowBuddy.Test.csproj", "{F5F7ADAA-69A1-4987-93C1-252141F73B74}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BowBuddy.Console", "BowBuddy.Console\BowBuddy.Console.csproj", "{0C582602-140B-4F88-A066-B3534A41A2ED}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -31,6 +33,10 @@ Global
 		{F5F7ADAA-69A1-4987-93C1-252141F73B74}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F5F7ADAA-69A1-4987-93C1-252141F73B74}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F5F7ADAA-69A1-4987-93C1-252141F73B74}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0C582602-140B-4F88-A066-B3534A41A2ED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0C582602-140B-4F88-A066-B3534A41A2ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0C582602-140B-4F88-A066-B3534A41A2ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0C582602-140B-4F88-A066-B3534A41A2ED}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

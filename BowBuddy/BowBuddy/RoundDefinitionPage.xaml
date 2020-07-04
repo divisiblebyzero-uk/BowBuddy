@@ -37,10 +37,13 @@
             </ListView>
         </StackLayout>
         <Label Text="Handicaps"></Label>
+        <WebView x:Name="webView" WidthRequest="1000" HeightRequest="600" />
+        <!--
         <microcharts:ChartView x:Name="chartView"
                                    HeightRequest="300"
 
             />
+    -->
     </StackLayout>
     
 </ContentPage>

@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 using BowBuddy.Model;
 using BowBuddy.Service;
 using Microcharts;
+using Newtonsoft.Json;
 using SkiaSharp;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -33,10 +35,6 @@ namespace BowBuddy
 
             var round = (Round)BindingContext;
 
-            HandicapCalculationService calc = HandicapCalculationService.Instance;
-
-            HandicapTable = calc.GetHandicapTable(round);
-
             /*
             HandicapList.ItemsSource = HandicapTable
                 .OrderBy(h => h.handicap)
@@ -45,14 +43,18 @@ namespace BowBuddy
                 */
 
 
-            chartView.Chart = new LineChart()
+            /*chartView.Chart = new LineChart()
             {
                 Entries = GetEntries(), 
                 LineSize = 1, 
                 LineMode = LineMode.Straight,
                 LabelTextSize = 32
-            };
+            };*/
 
+            webView.Source = new HtmlWebViewSource
+            {
+                Html = HandicapCalculationService.Instance.GetHandicapChartHtml(round)
+            };
         }
 
 
@@ -98,5 +100,6 @@ namespace BowBuddy
             };
         */
         }
+
     }
 }

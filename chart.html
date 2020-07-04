@@ -1,0 +1,46 @@
+<html>
+	<head><script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.bundle.min.js'></script></head>
+	<body>
+		<div style='height:100%'>
+			<canvas id='chart'/>
+		</div>
+		<script>
+			var config = {
+				type: 'line',
+				options: {
+					responsive: true,
+					maintainAspectRatio: false,
+					legend: {
+						position: 'top'
+					},
+					animation: {
+						animateScale: true
+					}
+				},
+				data: {
+					labels: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+					datasets: [{
+						label: 'Score',
+						backgroundColor: '#ffcccc',
+						borderColor: '#ff0000',
+						data: [
+							600,
+							550,
+							510,
+							480,
+							470,
+							465,
+							460
+						],
+						fill: true,
+					}]
+
+				}
+			};
+			window.onload = function() {{
+			  var canvasContext = document.getElementById('chart').getContext('2d');
+			  new Chart(canvasContext, config);
+			}};
+		</script>
+	</body>
+</html>

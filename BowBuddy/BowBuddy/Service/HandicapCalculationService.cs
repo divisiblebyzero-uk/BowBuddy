@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using BowBuddy.Model;
+using Newtonsoft.Json;
 
 namespace BowBuddy.Service
 {
@@ -107,5 +108,65 @@ namespace BowBuddy.Service
             double rangeInMetres = distance.Distance.InMetres();
             return 100.0D * rangeInMetres * Math.Pow(1.036D, 12.9D + handicap) * 5.0D * Math.Pow(10.0D, -4.0D) * (1.0D + 1.429D * Math.Pow(10.0D, -6.0D) * Math.Pow(1.07D, 4.3D + handicap) * Math.Pow(rangeInMetres, 2.0D));
         }
+
+        public string GetHandicapChartHtml(Round round)
+        {
+            return GetHandicapChartHtml(GetHandicapTable(round));
+        }
+
+        public string GetHandicapChartHtml(List<(int handicap, int score)> HandicapTable)
+        {
+            var labels = JsonConvert.SerializeObject(Enumerable.Range(0, 101).OrderByDescending(i => i).ToArray());
+            var data = JsonConvert.SerializeObject(HandicapTable.OrderByDescending(h => h.handicap).Select(h => h.score).ToArray());
+
+            StringBuilder html = new StringBuilder();
+            html.Append("<html>");
+            html.Append("	<head><script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.bundle.min.js'></script></head>");
+            html.Append("	<body>");
+            html.Append("		<div style='height:100%'>");
+            html.Append("			<canvas id='chart'/>");
+            html.Append("		</div>");
+            html.Append("		<script>");
+            html.Append("			var config = {");
+            html.Append("				type: 'line',");
+            html.Append("				options: {");
+            html.Append("                   legend: { display: false },");
+            html.Append("                   scales: { xAxes: [{ max: 0, min: 100, stepSize: -10, maxTicksLimit: 10 }] },");
+            html.Append("					responsive: true,");
+            html.Append("					maintainAspectRatio: false,");
+            html.Append("					legend: {");
+            html.Append("						position: 'top'");
+            html.Append("					},");
+            html.Append("					animation: {");
+            html.Append("						animateScale: true");
+            html.Append("					}");
+            html.Append("				},");
+            html.Append("				data: {");
+
+
+            html.Append($"					labels: {labels},");
+            html.Append("					datasets: [{");
+            html.Append("						label: 'Score',");
+            html.Append("						backgroundColor: '#ffcccc',");
+            html.Append("						borderColor: '#ff0000',");
+
+            html.Append($"						data: {data},");
+            html.Append("						fill: true,");
+            html.Append("						pointRadius: 1");
+            html.Append("					}]");
+            html.Append("");
+            html.Append("				}");
+            html.Append("			};");
+            html.Append("			window.onload = function() {{");
+            html.Append("			  var canvasContext = document.getElementById('chart').getContext('2d');");
+            html.Append("			  new Chart(canvasContext, config);");
+            html.Append("			}};");
+            html.Append("		</script>");
+            html.Append("	</body>");
+            html.Append("</html>");
+
+            return html.ToString();
+        }
+
     }
 }
