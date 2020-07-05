@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace BowBuddy.Model
@@ -69,8 +70,9 @@ namespace BowBuddy.Model
 
         private static readonly Lazy<RoundRegistry> instance = new Lazy<RoundRegistry>(() => new RoundRegistry());
         public static RoundRegistry Instance => instance.Value;
-
+        
         public Dictionary<string, Round> Rounds = new Dictionary<string, Round>();
+        public List<string> RoundNames => RoundRegistry.Instance.Rounds.Keys.ToList();
 
         private void PopulateRegistry()
         {

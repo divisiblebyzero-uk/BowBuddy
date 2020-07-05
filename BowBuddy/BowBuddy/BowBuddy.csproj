@@ -19,28 +19,31 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="ScoreSheetsListPage.xaml.cs">
+    <Compile Update="View\ScoreSheetsListPage.xaml.cs">
       <DependentUpon>ScoreSheetsListPage.xaml</DependentUpon>
     </Compile>
-    <Compile Update="RoundDefinitionPage.xaml.cs">
+    <Compile Update="View\RoundDefinitionPage.xaml.cs">
       <DependentUpon>RoundDefinitionPage.xaml</DependentUpon>
     </Compile>
-    <Compile Update="RoundsListPage.xaml.cs">
+    <Compile Update="View\RoundsListPage.xaml.cs">
       <DependentUpon>RoundsListPage.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Update="ScoreSheetPage.xaml">
+    <EmbeddedResource Update="View\ScoreSheetEntryPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="ScoreSheetsListPage.xaml">
+    <EmbeddedResource Update="View\ScoreSheetPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="RoundDefinitionPage.xaml">
+    <EmbeddedResource Update="View\ScoreSheetsListPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="RoundsListPage.xaml">
+    <EmbeddedResource Update="View\RoundDefinitionPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="View\RoundsListPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>

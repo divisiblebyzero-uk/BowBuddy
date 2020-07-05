@@ -9,16 +9,16 @@ namespace BowBuddy.Service
     public class ScoreCalculationService
     {
         private readonly Dictionary<(string ageGroup, string gender, string bowType),
-            List<(string classification, int minimumHandicap)>> ClassificationBoundaries = new Dictionary<(string ageGroup, string gender, string bowType), List<(string classification, int minimumHandicap)>>();
+            List<(string classification, int minimumHandicap)>> _classificationBoundaries = new Dictionary<(string ageGroup, string gender, string bowType), List<(string classification, int minimumHandicap)>>();
 
         public ScoreCalculationService()
         {
             PopulateClassificationBoundaries();
         }
         private void PopulateClassificationBoundaries()
-        { 
+        {
 
-            ClassificationBoundaries[(ScoreSheet.AgeGroupAdult, ScoreSheet.GenderMale, ScoreSheet.BowTypeRecurve)] = new List<(string classification, int minimumHandicap)>
+            _classificationBoundaries[(ScoreSheet.AgeGroupAdult, ScoreSheet.GenderMale, ScoreSheet.BowTypeRecurve)] = new List<(string classification, int minimumHandicap)>
             {
                 (ScoreSheet.Classification3rd, 58),
                 (ScoreSheet.Classification2nd, 50),
@@ -27,8 +27,34 @@ namespace BowBuddy.Service
                 (ScoreSheet.ClassificationMB, 28),
                 (ScoreSheet.ClassificationGMB, 22)
             };
+            _classificationBoundaries[(ScoreSheet.AgeGroupAdult, ScoreSheet.GenderMale, ScoreSheet.BowTypeCompound)] = new List<(string classification, int minimumHandicap)>
+            {
+                (ScoreSheet.Classification3rd, 48),
+                (ScoreSheet.Classification2nd, 38),
+                (ScoreSheet.Classification1st, 32),
+                (ScoreSheet.ClassificationBow, 23),
+                (ScoreSheet.ClassificationMB, 16),
+                (ScoreSheet.ClassificationGMB, 10)
+            };
+            _classificationBoundaries[(ScoreSheet.AgeGroupAdult, ScoreSheet.GenderMale, ScoreSheet.BowTypeLongbow)] = new List<(string classification, int minimumHandicap)>
+            {
+                (ScoreSheet.Classification3rd, 74),
+                (ScoreSheet.Classification2nd, 69),
+                (ScoreSheet.Classification1st, 65),
+                (ScoreSheet.ClassificationBow, 60),
+                (ScoreSheet.ClassificationMB, 55),
+                (ScoreSheet.ClassificationGMB, 52)
+            };
+            _classificationBoundaries[(ScoreSheet.AgeGroupAdult, ScoreSheet.GenderMale, ScoreSheet.BowTypeBarebow)] = new List<(string classification, int minimumHandicap)>
+            {
+                (ScoreSheet.Classification3rd, 71),
+                (ScoreSheet.Classification2nd, 64),
+                (ScoreSheet.Classification1st, 56),
+                (ScoreSheet.ClassificationBow, 49),
+                (ScoreSheet.ClassificationMB, 45),
+                (ScoreSheet.ClassificationGMB, 40)
+            };
         }
-
         
         public void CalculateScores(ScoreSheet scoreSheet)
         {
@@ -68,11 +94,16 @@ namespace BowBuddy.Service
 
             var lookupKey = (scoreSheet.AgeGroup, scoreSheet.Gender, scoreSheet.BowType);
 
-            if (ClassificationBoundaries.ContainsKey(lookupKey))
+            if (_classificationBoundaries.ContainsKey(lookupKey))
             {
-                scoreSheet.Classification = ClassificationBoundaries[lookupKey]
+                scoreSheet.Classification = _classificationBoundaries[lookupKey]
                     .OrderBy(v => v.minimumHandicap)
                     .FirstOrDefault(v => v.minimumHandicap >= scoreSheet.Handicap).classification;
+            }
+
+            if (String.IsNullOrEmpty(scoreSheet.Classification))
+            {
+                scoreSheet.Classification = ScoreSheet.ClassificationUnclassified;
             }
 
         }
@@ -104,8 +135,6 @@ namespace BowBuddy.Service
                     return "9";
             }
         }
-
-
     }
 
 

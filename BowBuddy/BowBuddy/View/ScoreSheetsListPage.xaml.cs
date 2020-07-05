@@ -115,7 +115,11 @@ namespace BowBuddy
 
         async void OnScoreSheetAddedClick(object sender, EventArgs e)
         {
-            await DisplayAlert("Bow buddy", "This is an alert", "OK");
+            await Navigation.PushAsync(new ScoreSheetEntryPage
+            {
+                BindingContext = new ScoreSheetEntryViewModel()
+            });
+            
         }
 
         async void OnListViewItemSelected(object sender, SelectedItemChangedEventArgs e)

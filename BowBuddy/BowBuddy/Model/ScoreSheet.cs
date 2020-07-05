@@ -19,12 +19,22 @@ namespace BowBuddy.Model
         public const string AgeGroupU12 = "U12";
         public const string GenderMale = "Male";
         public const string GenderFemale = "Female";
+        public const string ClassificationUnclassified = "Unc";
         public const string Classification3rd = "3rd";
         public const string Classification2nd = "2nd";
         public const string Classification1st = "1st";
         public const string ClassificationBow = "Bow";
         public const string ClassificationMB = "MB";
         public const string ClassificationGMB = "GMB";
+
+        public static IList<string> Genders = new List<string>
+            {GenderFemale, GenderMale};
+
+        public static IList<string> AgeGroups = new List<string>
+            {AgeGroupAdult, AgeGroupU18, AgeGroupU16, AgeGroupU14, AgeGroupU12};
+
+        public static IList<string> BowTypes = new List<string>
+            {BowTypeRecurve, BowTypeCompound, BowTypeLongbow, BowTypeBarebow};
 
         public DateTime Date { get; set; }
         public string RoundName { get; set; }

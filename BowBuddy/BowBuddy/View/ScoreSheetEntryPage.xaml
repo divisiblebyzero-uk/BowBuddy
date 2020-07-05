@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:system="clr-namespace:System;assembly=netstandard"
+             mc:Ignorable="d"
+             x:Class="BowBuddy.ScoreSheetEntryPage">
+    <ContentPage.Content>
+        <StackLayout>
+            <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
+                <Label Text="New Scoresheet" FontSize="16" VerticalOptions="CenterAndExpand"/>
+                <DatePicker FontSize="12" VerticalOptions="CenterAndExpand" Date="{x:Static system:DateTime.Now}">
+                    <DatePicker.Format>yyyy-MM-dd</DatePicker.Format>
+                    <DatePicker.MinimumDate>
+                        <system:DateTime x:FactoryMethod="Parse">
+                            <x:Arguments>
+                                <x:String>Jan 1 2000</x:String>
+                            </x:Arguments>
+                        </system:DateTime>
+                    </DatePicker.MinimumDate>
+                    <DatePicker.MaximumDate>
+                        <system:DateTime x:FactoryMethod="Parse">
+                            <x:Arguments>
+                                <x:String>Dec 31 2050</x:String>
+                            </x:Arguments>
+                        </system:DateTime>
+                    </DatePicker.MaximumDate>
+                </DatePicker>
+                <!-- TODO add time element -->
+            </StackLayout>
+            <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
+                <Picker Title="Round" SelectedItem="{Binding RoundName}" ItemsSource="{Binding RoundNames}"/>
+                <Picker Title="Gender" SelectedItem="{Binding Gender}" ItemsSource="{Binding Genders}"/>
+                <Picker Title="Age Group" SelectedItem="{Binding AgeGroup}" ItemsSource="{Binding AgeGroups}"/>
+                <Picker Title="Bow Type" SelectedItem="{Binding BowType}" ItemsSource="{Binding BowTypes}"/>
+            </StackLayout>
+            <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
+                <Label Text="40 yds"></Label>
+            </StackLayout>
+            <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
+                
+                <Frame BorderColor="Black">
+                    <Label Text="-"></Label>
+                </Frame>
+                <Frame BorderColor="Black">
+                    <Label Text="-"></Label>
+                </Frame>
+                <Frame BorderColor="Black">
+                    <Label Text="-"></Label>
+                </Frame>
+                <Frame BorderColor="Black">
+                    <Label Text="-"></Label>
+                </Frame>
+                <Frame BorderColor="Black">
+                    <Label Text="-"></Label>
+                </Frame>
+                <Frame BorderColor="Black">
+                    <Label Text="-"></Label>
+                </Frame>
+            </StackLayout>
+            <ListView BindingContext="Ends">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <TextCell Text="{Binding Scores}"></TextCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <Button Text="+ End"></Button>
+            <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" Spacing="1" HeightRequest="32">
+                <Button Text="X" FontSize="7" CornerRadius="35" BackgroundColor="Gold" TextColor="Black" WidthRequest="32"/>
+                <Button Text="10" FontSize="7" CornerRadius="35" BackgroundColor="Gold" TextColor="Black" WidthRequest="32"/>
+                <Button Text="9" FontSize="7" CornerRadius="35" BackgroundColor="Gold" TextColor="Black" WidthRequest="32"/>
+                <Button Text="8" FontSize="7" CornerRadius="35" BackgroundColor="Red" TextColor="White" WidthRequest="32"/>
+                <Button Text="7" FontSize="7" CornerRadius="35" BackgroundColor="Red" TextColor="White" WidthRequest="32"/>
+                <Button Text="6" FontSize="7" CornerRadius="35" BackgroundColor="Blue" TextColor="White" WidthRequest="32"/>
+                <Button Text="5" FontSize="7" CornerRadius="35" BackgroundColor="Blue" TextColor="White" WidthRequest="32"/>
+                <Button Text="4" FontSize="7" CornerRadius="35" BackgroundColor="Black" TextColor="White" WidthRequest="32"/>
+                <Button Text="3" FontSize="7" CornerRadius="35" BackgroundColor="Black" TextColor="White" WidthRequest="32"/>
+                <Button Text="2" FontSize="7" CornerRadius="35" BackgroundColor="White" TextColor="Black" WidthRequest="32"/>
+                <Button Text="1" FontSize="7" CornerRadius="35" BackgroundColor="White" TextColor="Black" WidthRequest="32"/>
+                <Button Text="M" FontSize="7" CornerRadius="35" BackgroundColor="Green" TextColor="Black" WidthRequest="32"/>
+            </StackLayout>
+            <Button Text="Save" Clicked="SaveButtonClicked"></Button>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
