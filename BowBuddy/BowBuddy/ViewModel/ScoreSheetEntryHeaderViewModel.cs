@@ -3,77 +3,87 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Runtime.InteropServices;
 using System.Text;
-using Xamarin.Forms;
 using BowBuddy.Annotations;
+using BowBuddy.Model;
 
-namespace BowBuddy.Model
+namespace BowBuddy.ViewModel
 {
-    public class ScoreSheetEntryViewModel : INotifyPropertyChanged
+    public class ScoreSheetEntryHeaderViewModel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
-        public readonly ScoreSheet _scoreSheet;
+        
+        public readonly ScoreSheet ScoreSheet;
 
-        public IList<string> RoundNames => RoundRegistry.Instance.RoundNames;  
-        public IList<string> Genders => ScoreSheet.Genders;
-        public IList<string> AgeGroups => ScoreSheet.AgeGroups;
-        public IList<string> BowTypes => ScoreSheet.BowTypes;
+        public IList<string> RoundNames()
+        {
+            return RoundRegistry.Instance.RoundNames;
+        }
+
+        public IList<string> Genders()
+        {
+            return ScoreSheet.Genders;
+        }
+
+        public IList<string> AgeGroups()
+        {
+            return ScoreSheet.AgeGroups;
+        }
+
+        public IList<string> BowTypes()
+        {
+            return ScoreSheet.BowTypes;
+        }
 
 
         public DateTime Date
         {
-            get { return _scoreSheet.Date; }
+            get { return ScoreSheet.Date; }
             set
             {
-                _scoreSheet.Date = value;
+                ScoreSheet.Date = value;
                 OnPropertyChanged("Date");
             }
         }
 
         public string RoundName
         {
-            get { return _scoreSheet.RoundName;  }
+            get { return ScoreSheet.RoundName; }
             set
             {
-                _scoreSheet.RoundName = value;
+                ScoreSheet.RoundName = value;
                 OnPropertyChanged("RoundName");
             }
         }
 
         public string Gender
         {
-            get { return _scoreSheet.Gender; }
+            get { return ScoreSheet.Gender; }
             set
             {
-                _scoreSheet.Gender = value;
+                ScoreSheet.Gender = value;
                 OnPropertyChanged("Gender");
             }
         }
 
         public string AgeGroup
         {
-            get { return _scoreSheet.AgeGroup; }
+            get { return ScoreSheet.AgeGroup; }
             set
             {
-                _scoreSheet.AgeGroup = value;
+                ScoreSheet.AgeGroup = value;
                 OnPropertyChanged("AgeGroup");
             }
         }
 
         public string BowType
         {
-            get { return _scoreSheet.BowType; }
+            get { return ScoreSheet.BowType; }
             set
             {
-                _scoreSheet.BowType = value;
+                ScoreSheet.BowType = value;
                 OnPropertyChanged("BowType");
             }
-        }
-
-        public IEnumerable<End> Ends
-        {
-            get { return _scoreSheet.Dozens.SelectMany(d => Ends); }
         }
 
         [NotifyPropertyChangedInvocator]
@@ -82,14 +92,14 @@ namespace BowBuddy.Model
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        public ScoreSheetEntryViewModel(ScoreSheet scoreSheet)
+        public ScoreSheetEntryHeaderViewModel(ScoreSheet scoreSheet)
         {
-            _scoreSheet = scoreSheet;
+            ScoreSheet = scoreSheet;
         }
 
-        public ScoreSheetEntryViewModel()
+        public ScoreSheetEntryHeaderViewModel()
         {
-            _scoreSheet = new ScoreSheet();
+            ScoreSheet = new ScoreSheet();
         }
 
     }

@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BowBuddy.Model;
+using BowBuddy.View;
+using BowBuddy.ViewModel;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -115,9 +117,9 @@ namespace BowBuddy
 
         async void OnScoreSheetAddedClick(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new ScoreSheetEntryPage
+            await Navigation.PushAsync(new ScoreSheetEntryHeaderPage
             {
-                BindingContext = new ScoreSheetEntryViewModel()
+                BindingContext = new ScoreSheetEntryHeaderViewModel()
             });
             
         }

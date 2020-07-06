@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:system="clr-namespace:System;assembly=netstandard"
+             mc:Ignorable="d"
+             x:Class="BowBuddy.View.ScoreSheetEntryHeaderPage">
+    <ContentPage.Content>
+        <StackLayout>
+            <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
+                <Label Text="New Scoresheet" FontSize="16" VerticalOptions="CenterAndExpand"/>
+                <DatePicker FontSize="12" VerticalOptions="CenterAndExpand" Date="{x:Static system:DateTime.Now}">
+                    <DatePicker.Format>yyyy-MM-dd</DatePicker.Format>
+                    <DatePicker.MinimumDate>
+                        <system:DateTime x:FactoryMethod="Parse">
+                            <x:Arguments>
+                                <x:String>Jan 1 2000</x:String>
+                            </x:Arguments>
+                        </system:DateTime>
+                    </DatePicker.MinimumDate>
+                    <DatePicker.MaximumDate>
+                        <system:DateTime x:FactoryMethod="Parse">
+                            <x:Arguments>
+                                <x:String>Dec 31 2050</x:String>
+                            </x:Arguments>
+                        </system:DateTime>
+                    </DatePicker.MaximumDate>
+                </DatePicker>
+                <!-- TODO add time element -->
+            </StackLayout>
+            <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
+                <Picker x:Name="RoundPicker" Title="Round" SelectedItem="{Binding RoundName}"/>
+                <Picker x:Name="GenderPicker" Title="Gender" SelectedItem="{Binding Gender}" />
+                <Picker x:Name="AgeGroupPicker" Title="Age Group" SelectedItem="{Binding AgeGroup}" ItemsSource="{Binding AgeGroups}"/>
+                <Picker x:Name="BowTypePicker" Title="Bow Type" SelectedItem="{Binding BowType}" ItemsSource="{Binding BowTypes}"/>
+            </StackLayout>
+            <Button Text="Save" Clicked="SaveButtonClicked"></Button>
+            <Button Text="Ends" Clicked="EndsButtonClicked"></Button>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

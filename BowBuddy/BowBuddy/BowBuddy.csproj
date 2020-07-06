@@ -19,6 +19,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="View\ScoreSheetEntryEndsPage.xaml.cs">
+      <DependentUpon>ScoreSheetEntryEndsPage.xaml</DependentUpon>
+    </Compile>
     <Compile Update="View\ScoreSheetsListPage.xaml.cs">
       <DependentUpon>ScoreSheetsListPage.xaml</DependentUpon>
     </Compile>
@@ -31,7 +34,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Update="View\ScoreSheetEntryPage.xaml">
+    <EmbeddedResource Update="View\ScoreSheetEntryHeaderPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="View\ScoreSheetEntryEndsPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="View\ScoreSheetPage.xaml">

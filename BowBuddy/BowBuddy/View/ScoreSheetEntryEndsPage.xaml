@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             x:Class="BowBuddy.ScoreSheetEntryPage">
+    <ContentPage.Content>
+        <StackLayout>
+            
+            <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
+                <Label Text="40 yds"></Label>
+            </StackLayout>
+            <StackLayout BindableLayout.ItemsSource="{Binding EndScores}">
+                <BindableLayout.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" BindableLayout.ItemsSource="{Binding}">
+                            <BindableLayout.ItemTemplate>
+                                <DataTemplate>
+                            <Frame WidthRequest="75" 
+                                           HeightRequest="25"
+                                           CornerRadius="25"
+                                           Padding="0"
+                                           HasShadow="True">
+                                <Label Text="{Binding .}" 
+                                       VerticalOptions="Center"
+                                       HorizontalOptions="Center"/>
+                                    </Frame>
+                                </DataTemplate>
+                            </BindableLayout.ItemTemplate>
+                        </StackLayout>
+                    </DataTemplate>
+                </BindableLayout.ItemTemplate>
+            </StackLayout>
+            <Label Text="{Binding EndsCount}"  FontSize="16" VerticalOptions="CenterAndExpand"/>
+            <Label Text="{Binding EndScores}"  FontSize="16" VerticalOptions="CenterAndExpand"/>
+            <Button Text="+ End" Clicked="AddEndClicked"></Button>
+            <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" Spacing="1" HeightRequest="32">
+                <Button Text="X" FontSize="7" CornerRadius="35" BackgroundColor="Gold" TextColor="Black" WidthRequest="32"/>
+                <Button Text="10" FontSize="7" CornerRadius="35" BackgroundColor="Gold" TextColor="Black" WidthRequest="32"/>
+                <Button Text="9" FontSize="7" CornerRadius="35" BackgroundColor="Gold" TextColor="Black" WidthRequest="32"/>
+                <Button Text="8" FontSize="7" CornerRadius="35" BackgroundColor="Red" TextColor="White" WidthRequest="32"/>
+                <Button Text="7" FontSize="7" CornerRadius="35" BackgroundColor="Red" TextColor="White" WidthRequest="32"/>
+                <Button Text="6" FontSize="7" CornerRadius="35" BackgroundColor="Blue" TextColor="White" WidthRequest="32"/>
+                <Button Text="5" FontSize="7" CornerRadius="35" BackgroundColor="Blue" TextColor="White" WidthRequest="32"/>
+                <Button Text="4" FontSize="7" CornerRadius="35" BackgroundColor="Black" TextColor="White" WidthRequest="32"/>
+                <Button Text="3" FontSize="7" CornerRadius="35" BackgroundColor="Black" TextColor="White" WidthRequest="32"/>
+                <Button Text="2" FontSize="7" CornerRadius="35" BackgroundColor="White" TextColor="Black" WidthRequest="32"/>
+                <Button Text="1" FontSize="7" CornerRadius="35" BackgroundColor="White" TextColor="Black" WidthRequest="32"/>
+                <Button Text="M" FontSize="7" CornerRadius="35" BackgroundColor="Green" TextColor="Black" WidthRequest="32"/>
+            </StackLayout>
+            <Button Text="Save" Clicked="SaveButtonClicked"></Button>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

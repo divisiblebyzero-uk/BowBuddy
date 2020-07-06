@@ -20,13 +20,16 @@ namespace BowBuddy
         protected override void OnAppearing()
         {
             base.OnAppearing();
-
         }
 
         private async void SaveButtonClicked(object sender, EventArgs e)
         {
-            
             await DisplayAlert("Bow Buddy", JsonConvert.SerializeObject(BindingContext), "OK");
+        }
+
+        private void AddEndClicked(object sender, EventArgs e)
+        {
+            ((ScoreSheetEntryEndsViewModel) BindingContext).AddEnd();
         }
     }
 }
