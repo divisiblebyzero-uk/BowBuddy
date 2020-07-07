@@ -2,52 +2,52 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:local="clr-namespace:BowBuddy"
              x:Class="BowBuddy.ScoreSheetEntryPage">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <local:ScoreCircleTextColourConverter x:Key="textColourConverter"/>
+            <local:ScoreCircleBackgroundColourConverter x:Key="backgroundColourConverter"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
     <ContentPage.Content>
+        <ScrollView>
         <StackLayout>
-            
-            <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
-                <Label Text="40 yds"></Label>
-            </StackLayout>
-            <StackLayout BindableLayout.ItemsSource="{Binding EndScores}">
+            <StackLayout BindableLayout.ItemsSource="{Binding Distances}">
                 <BindableLayout.ItemTemplate>
                     <DataTemplate>
-                        <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" BindableLayout.ItemsSource="{Binding}">
-                            <BindableLayout.ItemTemplate>
-                                <DataTemplate>
-                            <Frame WidthRequest="75" 
-                                           HeightRequest="25"
-                                           CornerRadius="25"
-                                           Padding="0"
-                                           HasShadow="True">
-                                <Label Text="{Binding .}" 
-                                       VerticalOptions="Center"
-                                       HorizontalOptions="Center"/>
-                                    </Frame>
-                                </DataTemplate>
-                            </BindableLayout.ItemTemplate>
+                        <StackLayout>
+                            <Label HorizontalOptions="CenterAndExpand" FontAttributes="Bold" FontSize="Medium" Text="{Binding Distance}"/>
+                            <StackLayout BindableLayout.ItemsSource="{Binding Scores}">
+                                <BindableLayout.ItemTemplate>
+                                    <DataTemplate>
+                                        <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" BindableLayout.ItemsSource="{Binding}">
+                                            <BindableLayout.ItemTemplate>
+                                                <DataTemplate>
+                                                    <Frame WidthRequest="25" 
+                                                           HeightRequest="25"
+                                                           CornerRadius="25"
+                                                           Padding="0"
+                                                           BackgroundColor="{Binding Converter={StaticResource backgroundColourConverter}}"
+                                                           HasShadow="True">
+                                                        <Label Text="{Binding .}" 
+                                                               FontSize="10" TextColor="{Binding Converter={StaticResource textColourConverter}}"
+                                                               VerticalOptions="Center"
+                                                               HorizontalOptions="Center"/>
+                                                    </Frame>
+                                                </DataTemplate>
+                                            </BindableLayout.ItemTemplate>
+                                        </StackLayout>
+                                    </DataTemplate>
+                                </BindableLayout.ItemTemplate>
+                            </StackLayout>
                         </StackLayout>
                     </DataTemplate>
                 </BindableLayout.ItemTemplate>
             </StackLayout>
-            <Label Text="{Binding EndsCount}"  FontSize="16" VerticalOptions="CenterAndExpand"/>
-            <Label Text="{Binding EndScores}"  FontSize="16" VerticalOptions="CenterAndExpand"/>
             <Button Text="+ End" Clicked="AddEndClicked"></Button>
-            <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" Spacing="1" HeightRequest="32">
-                <Button Text="X" FontSize="7" CornerRadius="35" BackgroundColor="Gold" TextColor="Black" WidthRequest="32"/>
-                <Button Text="10" FontSize="7" CornerRadius="35" BackgroundColor="Gold" TextColor="Black" WidthRequest="32"/>
-                <Button Text="9" FontSize="7" CornerRadius="35" BackgroundColor="Gold" TextColor="Black" WidthRequest="32"/>
-                <Button Text="8" FontSize="7" CornerRadius="35" BackgroundColor="Red" TextColor="White" WidthRequest="32"/>
-                <Button Text="7" FontSize="7" CornerRadius="35" BackgroundColor="Red" TextColor="White" WidthRequest="32"/>
-                <Button Text="6" FontSize="7" CornerRadius="35" BackgroundColor="Blue" TextColor="White" WidthRequest="32"/>
-                <Button Text="5" FontSize="7" CornerRadius="35" BackgroundColor="Blue" TextColor="White" WidthRequest="32"/>
-                <Button Text="4" FontSize="7" CornerRadius="35" BackgroundColor="Black" TextColor="White" WidthRequest="32"/>
-                <Button Text="3" FontSize="7" CornerRadius="35" BackgroundColor="Black" TextColor="White" WidthRequest="32"/>
-                <Button Text="2" FontSize="7" CornerRadius="35" BackgroundColor="White" TextColor="Black" WidthRequest="32"/>
-                <Button Text="1" FontSize="7" CornerRadius="35" BackgroundColor="White" TextColor="Black" WidthRequest="32"/>
-                <Button Text="M" FontSize="7" CornerRadius="35" BackgroundColor="Green" TextColor="Black" WidthRequest="32"/>
-            </StackLayout>
             <Button Text="Save" Clicked="SaveButtonClicked"></Button>
         </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>

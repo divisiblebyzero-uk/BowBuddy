@@ -7,7 +7,7 @@
              x:Class="BowBuddy.MainPage">
 
     <StackLayout Margin="20,35,20,20">
-        <Label Text="Welcome to Xamarin.Forms!"
+        <Label Text="Welcome to BowBuddy!"
                HorizontalOptions="Center" />
         <Button Text="Rounds" 
                 Clicked="OnRoundsButtonClicked"/>
