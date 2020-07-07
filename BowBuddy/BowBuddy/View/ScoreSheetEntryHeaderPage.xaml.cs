@@ -22,11 +22,21 @@ namespace BowBuddy.View
         protected override void OnAppearing()
         {
             base.OnAppearing();
+            
+            var viewModel = (ScoreSheetEntryHeaderViewModel) BindingContext;
 
             RoundPicker.ItemsSource = RoundRegistry.Instance.RoundNames;
+            RoundPicker.SetBinding(Picker.SelectedItemProperty, new Binding("RoundName"));
+
             GenderPicker.ItemsSource = ScoreSheet.Genders;
+            GenderPicker.SetBinding(Picker.SelectedItemProperty, new Binding("Gender"));
+            
+
             AgeGroupPicker.ItemsSource = ScoreSheet.AgeGroups;
+            AgeGroupPicker.SetBinding(Picker.SelectedItemProperty, new Binding("AgeGroup"));
+
             BowTypePicker.ItemsSource = ScoreSheet.BowTypes;
+            BowTypePicker.SetBinding(Picker.SelectedItemProperty, new Binding("BowType"));
         }
 
         private async void SaveButtonClicked(object sender, EventArgs e)

@@ -18,7 +18,7 @@
                     <StackLayout Orientation="Horizontal">
                         <Label Text="{Binding Date, StringFormat='{0:dd/MM/yyyy HH:mm:ss}'}" />
                         <Label Text="{Binding RoundName}" />
-
+                        <Button Text="Edit" Clicked="OnScoreSheetEditClick"/>
                     </StackLayout>
                 </ViewCell>
             </DataTemplate>

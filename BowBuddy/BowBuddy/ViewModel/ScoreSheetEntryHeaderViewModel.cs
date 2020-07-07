@@ -95,6 +95,7 @@ namespace BowBuddy.ViewModel
         public ScoreSheetEntryHeaderViewModel(ScoreSheet scoreSheet)
         {
             ScoreSheet = scoreSheet;
+            OnPropertyChanged("RoundName");
         }
 
         public ScoreSheetEntryHeaderViewModel()

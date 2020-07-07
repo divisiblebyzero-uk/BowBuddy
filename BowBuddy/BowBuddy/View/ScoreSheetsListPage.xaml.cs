@@ -115,15 +115,6 @@ namespace BowBuddy
             listView.ItemsSource = scoreSheets.OrderBy(s => s.Date).ToList();
         }
 
-        async void OnScoreSheetAddedClick(object sender, EventArgs e)
-        {
-            await Navigation.PushAsync(new ScoreSheetEntryHeaderPage
-            {
-                BindingContext = new ScoreSheetEntryHeaderViewModel()
-            });
-            
-        }
-
         async void OnListViewItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
             if (e.SelectedItem != null)
@@ -133,6 +124,27 @@ namespace BowBuddy
                     BindingContext = e.SelectedItem as ScoreSheet
                 });
             }
+        }
+
+        async void OnScoreSheetAddedClick(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new ScoreSheetEntryHeaderPage
+            {
+                BindingContext = new ScoreSheetEntryHeaderViewModel()
+            });
+
+        }
+
+        async void OnScoreSheetEditClick(object sender, EventArgs e)
+        {
+            var button = (Button) sender;
+            var scoreSheet = (ScoreSheet)button.Parent.BindingContext;
+
+            await Navigation.PushAsync(new ScoreSheetEntryHeaderPage
+            {
+                BindingContext = new ScoreSheetEntryHeaderViewModel(scoreSheet)
+            });
+
         }
     }
 }

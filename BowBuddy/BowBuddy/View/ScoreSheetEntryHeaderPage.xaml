@@ -29,11 +29,38 @@
                 </DatePicker>
                 <!-- TODO add time element -->
             </StackLayout>
+            <TableView Intent="Form">
+                <TableRoot>
+                    <TableSection Title="Round Details">
+                        <ViewCell>
+                            <StackLayout Orientation="Horizontal">
+                                <Label Text="Round Type" VerticalOptions="Center" HorizontalOptions="Start"></Label>
+                                <Picker x:Name="RoundPicker" Title="Round" VerticalOptions="Center" HorizontalOptions="EndAndExpand" WidthRequest="200"/>
+                            </StackLayout>
+                        </ViewCell>
+                        <ViewCell>
+                            <StackLayout Orientation="Horizontal">
+                                <Label Text="Gender" VerticalOptions="Center" HorizontalOptions="Start"></Label>
+                                <Picker x:Name="GenderPicker" Title="Gender" VerticalOptions="Center" HorizontalOptions="EndAndExpand" WidthRequest="200"/>
+                            </StackLayout>
+                        </ViewCell>
+                        <ViewCell>
+                            <StackLayout Orientation="Horizontal">
+                                <Label Text="Age Group" VerticalOptions="Center" HorizontalOptions="Start"></Label>
+                                <Picker x:Name="AgeGroupPicker" Title="Age Group" VerticalOptions="Center" HorizontalOptions="EndAndExpand" WidthRequest="200"/>
+                            </StackLayout>
+                        </ViewCell>
+                        <ViewCell>
+                            <StackLayout Orientation="Horizontal">
+                                <Label Text="Bow Type" VerticalOptions="Center" HorizontalOptions="Start"></Label>
+                                <Picker x:Name="BowTypePicker" Title="Bow Type" VerticalOptions="Center" HorizontalOptions="EndAndExpand" WidthRequest="200"/>
+                            </StackLayout>
+                        </ViewCell>
+                    </TableSection>
+                </TableRoot>
+            </TableView>
             <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
-                <Picker x:Name="RoundPicker" Title="Round" SelectedItem="{Binding RoundName}"/>
-                <Picker x:Name="GenderPicker" Title="Gender" SelectedItem="{Binding Gender}" />
-                <Picker x:Name="AgeGroupPicker" Title="Age Group" SelectedItem="{Binding AgeGroup}" ItemsSource="{Binding AgeGroups}"/>
-                <Picker x:Name="BowTypePicker" Title="Bow Type" SelectedItem="{Binding BowType}" ItemsSource="{Binding BowTypes}"/>
+                
             </StackLayout>
             <Button Text="Save" Clicked="SaveButtonClicked"></Button>
             <Button Text="Ends" Clicked="EndsButtonClicked"></Button>
