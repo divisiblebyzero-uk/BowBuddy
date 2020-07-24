@@ -70,24 +70,12 @@ namespace BowBuddy.Service
 
 
             scoreSheet.Total = new Total();
-            scoreSheet.Dozens.ForEach(dozen =>
+            scoreSheet.Ends.ForEach(end =>
             {
-                dozen.Ends.ForEach(end => end.EndTotal = end.Scores.Sum(ConvertScoreToInt));
-                dozen.Total = new Total
-                {
-                    Score = dozen.Ends.Sum(end => end.Scores.Sum(ConvertScoreToInt)),
-                    Hits = dozen.Ends.Sum(end =>
-                        end.Scores.Count(score => (!String.IsNullOrEmpty(score) && score != "M" && score != "0"))),
-                    Golds = dozen.Ends.Sum(end => end.Scores.Count(score => score == goldScore))
-                };
-
-                scoreSheet.Total.Score += dozen.Total.Score;
-                scoreSheet.Total.Hits += dozen.Total.Hits;
-                scoreSheet.Total.Golds += dozen.Total.Golds;
-                scoreSheet.Total.RunningTotal += dozen.Total.Score;
-
-                
-                dozen.Total.RunningTotal = scoreSheet.Total.RunningTotal;
+                scoreSheet.Total.Score += end.Scores.Sum(ConvertScoreToInt);
+                scoreSheet.Total.Hits += end.Scores.Count(score => (!String.IsNullOrEmpty(score) && score != "M" && score != "0"));
+                scoreSheet.Total.Golds += end.Scores.Count(score => score == goldScore);
+                scoreSheet.Total.RunningTotal += scoreSheet.Total.Score;
             });
 
             scoreSheet.Handicap = HandicapCalculationService.Instance.CalculateHandicap(round, scoreSheet.Total.Score);

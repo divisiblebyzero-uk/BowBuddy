@@ -38,7 +38,7 @@ namespace BowBuddy.Model
 
         public DateTime Date { get; set; }
         public string RoundName { get; set; }
-        public List<Dozen> Dozens { get; set; } = new List<Dozen>();
+        public List<End> Ends { get; set; } = new List<End>();
         public Total Total { get; set; } 
         public int Handicap { get; set; }
         public string Gender { get; set; }
@@ -50,13 +50,6 @@ namespace BowBuddy.Model
     public class End
     {
         public string[] Scores { get; set; } = new string[6];
-        public int EndTotal { get; set; }
-    }
-
-    public class Dozen
-    {
-        public List<End> Ends { get; set; } = new List<End>();
-        public Total Total { get; set; }
     }
 
     public class Total

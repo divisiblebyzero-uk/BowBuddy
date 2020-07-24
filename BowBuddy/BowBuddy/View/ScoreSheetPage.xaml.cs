@@ -92,9 +92,7 @@ namespace BowBuddy
             html.Append("	<body>");
             html.Append("		<table>");
             html.Append("			<tr>");
-            html.Append("				<td colspan='6'>End 1</td>");
-            html.Append("				<td>E/T</td>");
-            html.Append("				<td colspan='6'>End 2</td>");
+            html.Append("				<td colspan='6'>End</td>");
             html.Append("				<td>E/T</td>");
             html.Append("				<td>Golds</td>");
             html.Append("				<td>Score</td>");
@@ -102,24 +100,22 @@ namespace BowBuddy
             html.Append("				<td>R/T</td>");
             html.Append("			</tr>");
 
-            scoreSheet.Dozens.ForEach(dozen =>
+            scoreSheet.Ends.ForEach(end =>
                 {
                     html.Append("<tr>");
-                    dozen.Ends.ForEach(end =>
+                    foreach (string score in end.Scores)
                     {
-                        foreach (string score in end.Scores)
-                        {
-                            string colour = GetColourForScore(score);
-                            html.Append($"<td><span class='circle {colour}-circle'>{score}</span></td>");
-                        }
+                        string colour = GetColourForScore(score);
+                        html.Append($"<td><span class='circle {colour}-circle'>{score}</span></td>");
+                    }
 
-                        html.Append($"<td>{end.EndTotal}</td>");
-                    });
-                    html.Append($"<td>{dozen.Total.Golds}</td>");
-                    html.Append($"<td>{dozen.Total.Score}</td>");
-                    html.Append($"<td>{dozen.Total.Hits}</td>");
-                    html.Append($"<td>{dozen.Total.RunningTotal}</td>");
-                    html.Append("</tr>");
+                    html.Append($"<td>0</td>");
+                    html.Append($"<td>0</td>");
+                    html.Append($"<td>0</td>");
+                    html.Append($"<td>0</td>");
+                    html.Append($"<td>0</td>");
+
+                html.Append("</tr>");
                 }
             );
             html.Append("<tr>");

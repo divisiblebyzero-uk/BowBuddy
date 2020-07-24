@@ -21,79 +21,7 @@ namespace BowBuddy.Test
                 BowType = ScoreSheet.BowTypeRecurve,
                 AgeGroup = ScoreSheet.AgeGroupAdult,
                 Date = DateTime.Now,
-                Dozens = new Dozen[]
-                {
-                    new Dozen
-                    {
-                        Ends = new End[]
-                        {
-                            new End
-                            {
-                                Scores = new string[] {"X","X","X","X","7","M"}
-                            },
-                            new End
-                            {
-                                Scores = new string[] {"X","X","X","X","7","M"}
-                            }
-                        }.ToList()
-                    },
-                    new Dozen
-                    {
-                        Ends = new End[]
-                        {
-                            new End
-                            {
-                                Scores = new string[] {"X","X","X","X","7","M"}
-                            },
-                            new End
-                            {
-                                Scores = new string[] {"X","X","X","X","7","M"}
-                            }
-                        }.ToList()
-                    },
-                    new Dozen
-                    {
-                        Ends = new End[]
-                        {
-                            new End
-                            {
-                                Scores = new string[] {"X","X","X","X","7","M"}
-                            },
-                            new End
-                            {
-                                Scores = new string[] {"X","X","X","X","7","M"}
-                            }
-                        }.ToList()
-                    },
-                    new Dozen
-                    {
-                        Ends = new End[]
-                        {
-                            new End
-                            {
-                                Scores = new string[] {"X","X","X","X","7","M"}
-                            },
-                            new End
-                            {
-                                Scores = new string[] {"X","X","X","X","7","M"}
-                            }
-                        }.ToList()
-                    },
-                    new Dozen
-                    {
-                        Ends = new End[]
-                        {
-                            new End
-                            {
-                                Scores = new string[] {"X","X","X","X","7","M"}
-                            },
-                            new End
-                            {
-                                Scores = new string[] {"X","X","X","X","7","M"}
-                            }
-                        }.ToList()
-                    }
-                }.ToList(),
+                Ends = Enumerable.Repeat(new End {Scores = new [] { "X", "X", "X", "X", "7", "M" } }, 10).ToList(),
                 RoundName = "Portsmouth"
             };
 
@@ -103,13 +31,6 @@ namespace BowBuddy.Test
             Assert.Equal(470, scoreSheet.Total.RunningTotal);
             Assert.Equal(40, scoreSheet.Total.Golds);
             Assert.Equal(50, scoreSheet.Total.Hits);
-            scoreSheet.Dozens.ForEach(dozen =>
-            {
-                Assert.Equal(94, dozen.Total.Score);
-                Assert.Equal(8, dozen.Total.Golds);
-                Assert.Equal(10, dozen.Total.Hits);
-                dozen.Ends.ForEach(end => Assert.Equal(47, end.EndTotal));
-            });
 
             Assert.Equal(53, scoreSheet.Handicap);
             Assert.Equal("3rd", scoreSheet.Classification);

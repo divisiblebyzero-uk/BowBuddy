@@ -13,6 +13,7 @@
     <ContentPage.Content>
         <ScrollView>
         <StackLayout>
+            <Label Text="{Binding ScoreSheet.RoundName}" />
             <StackLayout BindableLayout.ItemsSource="{Binding Distances}">
                 <BindableLayout.ItemTemplate>
                     <DataTemplate>

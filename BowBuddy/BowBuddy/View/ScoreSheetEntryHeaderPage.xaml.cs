@@ -25,8 +25,11 @@ namespace BowBuddy.View
             
             var viewModel = (ScoreSheetEntryHeaderViewModel) BindingContext;
 
+            var currentRoundName = viewModel.RoundName;
+
             RoundPicker.ItemsSource = RoundRegistry.Instance.RoundNames;
             RoundPicker.SetBinding(Picker.SelectedItemProperty, new Binding("RoundName"));
+            viewModel.RoundName = currentRoundName;
 
             GenderPicker.ItemsSource = ScoreSheet.Genders;
             GenderPicker.SetBinding(Picker.SelectedItemProperty, new Binding("Gender"));

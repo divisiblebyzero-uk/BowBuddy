@@ -20,11 +20,6 @@ namespace BowBuddy.Model
         public ObservableCollection<DistanceViewModel> Distances { get; set; } =
             new ObservableCollection<DistanceViewModel>();
 
-
-        public ObservableCollection<ObservableCollection<string>> EndScores { get; set; } = new ObservableCollection<ObservableCollection<string>>();
-        public int EndsCount { get; set; } = 0;
-        public string EndsCountString { get; set; } = "hello";
-
         public void AddEnd()
         {
             /*
@@ -34,11 +29,13 @@ namespace BowBuddy.Model
             }
             _scoreSheet.Dozens[_scoreSheet.Dozens.Count - 1].Ends.Add(new End());
             */
+            /*
             EndScores.Add(new ObservableCollection<string> {"X", "X", "7", "7", "5", "M"});
             EndsCount = EndScores.Count();
             // TODO Redo the ends in the backing model
             OnPropertyChanged("EndScores");
             OnPropertyChanged("EndsCount");
+        */
         }
 
         [NotifyPropertyChangedInvocator]
@@ -50,27 +47,34 @@ namespace BowBuddy.Model
         public ScoreSheetEntryEndsViewModel(ScoreSheet scoreSheet)
         {
             ScoreSheet = scoreSheet;
-            Enumerable.Range(0, 12).ForEach(i => EndScores.Add(new ObservableCollection<string> { "X", "X", "7", "7", "5", "M" }));
+            Round round;
+            if (scoreSheet.RoundName != null && RoundRegistry.Instance.Rounds.ContainsKey(scoreSheet.RoundName))
+            {
+                round = RoundRegistry.Instance.Rounds[scoreSheet.RoundName];
+            }
+            else
+            {
+                round = RoundRegistry.Instance.Rounds["Junior National"];
+            }
 
-            var distance1 = new DistanceViewModel { Distance = "40 yds", Scores = new ObservableCollection<ObservableCollection<string>>() };
-            Enumerable.Range(0, 8).ForEach(i => distance1.Scores.Add(new ObservableCollection<string> { "X", "X", "7", "7", "5", "M" }));
-            var distance2 = new DistanceViewModel { Distance = "30 yds", Scores = new ObservableCollection<ObservableCollection<string>>() };
-            Enumerable.Range(0, 4).ForEach(i => distance2.Scores.Add(new ObservableCollection<string> { "X", "X", "7", "7", "5", "M" }));
-            Distances.Add(distance1);
-            Distances.Add(distance2);
+            int scoreSheetEndCount = scoreSheet.Ends.Count;
+
+            foreach (var distance in round.Distances)
+            {
+                var dvm = new DistanceViewModel
+                {
+                    Distance = distance.DisplayString, Scores = new ObservableCollection<ObservableCollection<string>>()
+                };
+                for (int i = 0; i < distance.Arrows / 6 && i < scoreSheetEndCount; i++)
+                {
+                    dvm.Scores.Add(new ObservableCollection<string>(scoreSheet.Ends[i].Scores));
+                }
+
+                Distances.Add(dvm);
+            }
 
             OnPropertyChanged("Distances");
-            /*
-            _scoreSheet.Dozens.ForEach(dozen => dozen.Ends.ForEach(end => Ends.Add(end)));
-        */
-            EndsCount = EndScores.Count();
         }
-
-        public ScoreSheetEntryEndsViewModel()
-        {
-            ScoreSheet = new ScoreSheet();
-        }
-
     }
 
     public class DistanceViewModel

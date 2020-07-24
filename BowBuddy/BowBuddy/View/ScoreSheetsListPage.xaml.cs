@@ -21,89 +21,18 @@ namespace BowBuddy
 
         private List<ScoreSheet> GetScoreSheets()
         {
-            return new ScoreSheet[] {
-                new ScoreSheet
+            return new ScoreSheet[] 
             {
-                Gender = ScoreSheet.GenderMale,
-                BowType = ScoreSheet.BowTypeRecurve,
-                AgeGroup = ScoreSheet.AgeGroupAdult,
-                Date = DateTime.Now,
-                Dozens = new Dozen[]
+                new ScoreSheet
                 {
-                    new Dozen
-                    {
-                        Ends = new End[]
-                        {
-                            new End
-                            {
-                                Scores = new string[] {"X","9","8","7","M","M"}
-                            },
-                            new End
-                            {
-                                Scores = new string[] {"X","9","8","7","M","M"}
-                            }
-                        }.ToList()
-                    },
-                    new Dozen
-                    {
-                        Ends = new End[]
-                        {
-                            new End
-                            {
-                                Scores = new string[] {"X","9","8","7","M","M"}
-                            },
-                            new End
-                            {
-                                Scores = new string[] {"X","9","8","7","M","M"}
-                            }
-                        }.ToList()
-                    },
-                    new Dozen
-                    {
-                        Ends = new End[]
-                        {
-                            new End
-                            {
-                                Scores = new string[] {"X","9","8","7","M","M"}
-                            },
-                            new End
-                            {
-                                Scores = new string[] {"X","9","8","7","M","M"}
-                            }
-                        }.ToList()
-                    },
-                    new Dozen
-                    {
-                        Ends = new End[]
-                        {
-                            new End
-                            {
-                                Scores = new string[] {"X","9","8","7","M","M"}
-                            },
-                            new End
-                            {
-                                Scores = new string[] {"X","9","8","7","M","M"}
-                            }
-                        }.ToList()
-                    },
-                    new Dozen
-                    {
-                        Ends = new End[]
-                        {
-                            new End
-                            {
-                                Scores = new string[] {"X","9","8","7","M","M"}
-                            },
-                            new End
-                            {
-                                Scores = new string[] {"X","9","8","7","M","M"}
-                            }
-                        }.ToList()
-                    }
-                }.ToList(),
-                RoundName = "Portsmouth"
-            }
-                }.ToList();
+                    Gender = ScoreSheet.GenderMale,
+                    BowType = ScoreSheet.BowTypeRecurve,
+                    AgeGroup = ScoreSheet.AgeGroupAdult,
+                    Date = DateTime.Now,
+                    Ends = Enumerable.Repeat(new End {Scores = new string[] {"X","9","8","7","M","M"}}, 10).ToList(),
+                    RoundName = "Portsmouth"
+                }
+            }.ToList();
         }
 
         protected override void OnAppearing()
