@@ -2,14 +2,44 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:view="clr-namespace:BowBuddy.View;assembly=BowBuddy"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              x:Class="BowBuddy.View.ScoreSheetEntryEndsEntryPage">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <view:ScoreCircleTextColourConverter x:Key="textColourConverter"/>
+            <view:ScoreCircleBackgroundColourConverter x:Key="backgroundColourConverter"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+            <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" BindableLayout.ItemsSource="{Binding NewEndScores}">
+                <BindableLayout.ItemTemplate>
+                    <DataTemplate>
+                        <Entry Text="{Binding .}"></Entry>
+                    </DataTemplate>
+                </BindableLayout.ItemTemplate>
+            </StackLayout>
+            <Button Text="Save" Command="{Binding SaveCommand}"></Button>
+            <Button Text="ShowModelButton" Clicked="ShowModelButtonClicked"></Button>
+            <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" BindableLayout.ItemsSource="{Binding ScoreOptions}">
+                <BindableLayout.ItemTemplate>
+                    <DataTemplate>
+                        <Frame WidthRequest="25" 
+                               HeightRequest="25"
+                               CornerRadius="0"
+                               Padding="0"
+                               BackgroundColor="{Binding Converter={StaticResource backgroundColourConverter}}"
+                               HasShadow="True">
+                            <Label Text="{Binding}" 
+                                   FontSize="10" TextColor="{Binding Converter={StaticResource textColourConverter}}"
+                                   VerticalOptions="Center"
+                                   HorizontalOptions="Center"/>
+                        </Frame>
+                    </DataTemplate>
+                </BindableLayout.ItemTemplate>
+            </StackLayout>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

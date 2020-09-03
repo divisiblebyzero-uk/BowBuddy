@@ -3,52 +3,60 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:local="clr-namespace:BowBuddy"
+             xmlns:view="clr-namespace:BowBuddy.View;assembly=BowBuddy"
+             xmlns:system="clr-namespace:System;assembly=netstandard"
              x:Class="BowBuddy.ScoreSheetEntryPage">
     <ContentPage.Resources>
         <ResourceDictionary>
-            <local:ScoreCircleTextColourConverter x:Key="textColourConverter"/>
-            <local:ScoreCircleBackgroundColourConverter x:Key="backgroundColourConverter"/>
+            <view:ScoreCircleTextColourConverter x:Key="textColourConverter"/>
+            <view:ScoreCircleBackgroundColourConverter x:Key="backgroundColourConverter"/>
         </ResourceDictionary>
     </ContentPage.Resources>
     <ContentPage.Content>
         <ScrollView>
-        <StackLayout>
-            <Label Text="{Binding ScoreSheet.RoundName}" />
-            <StackLayout BindableLayout.ItemsSource="{Binding Distances}">
-                <BindableLayout.ItemTemplate>
-                    <DataTemplate>
-                        <StackLayout>
-                            <Label HorizontalOptions="CenterAndExpand" FontAttributes="Bold" FontSize="Medium" Text="{Binding Distance}"/>
-                            <StackLayout BindableLayout.ItemsSource="{Binding Scores}">
-                                <BindableLayout.ItemTemplate>
-                                    <DataTemplate>
-                                        <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" BindableLayout.ItemsSource="{Binding}">
-                                            <BindableLayout.ItemTemplate>
-                                                <DataTemplate>
-                                                    <Frame WidthRequest="25" 
-                                                           HeightRequest="25"
-                                                           CornerRadius="25"
-                                                           Padding="0"
-                                                           BackgroundColor="{Binding Converter={StaticResource backgroundColourConverter}}"
-                                                           HasShadow="True">
-                                                        <Label Text="{Binding .}" 
-                                                               FontSize="10" TextColor="{Binding Converter={StaticResource textColourConverter}}"
-                                                               VerticalOptions="Center"
-                                                               HorizontalOptions="Center"/>
-                                                    </Frame>
-                                                </DataTemplate>
-                                            </BindableLayout.ItemTemplate>
-                                        </StackLayout>
-                                    </DataTemplate>
-                                </BindableLayout.ItemTemplate>
+            <StackLayout>
+                <Label Text="{Binding ScoreSheet.RoundName}" />
+                <StackLayout BindableLayout.ItemsSource="{Binding Distances}">
+                    <BindableLayout.ItemTemplate>
+                        <DataTemplate>
+                            <StackLayout>
+                                <Label HorizontalOptions="CenterAndExpand" FontAttributes="Bold" FontSize="Medium" Text="{Binding Distance}"/>
+                                <StackLayout BindableLayout.ItemsSource="{Binding Scores}">
+                                    <BindableLayout.ItemTemplate>
+                                        <DataTemplate>
+                                            <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" BindableLayout.ItemsSource="{Binding}">
+                                                <BindableLayout.ItemTemplate>
+                                                    <DataTemplate>
+                                                        <Frame WidthRequest="25" 
+                                                               HeightRequest="25"
+                                                               CornerRadius="25"
+                                                               Padding="0"
+                                                               BackgroundColor="{Binding Converter={StaticResource backgroundColourConverter}}"
+                                                               HasShadow="True">
+                                                            
+                                                            <Label Text="{Binding .}" 
+                                                                   FontSize="10" TextColor="{Binding Converter={StaticResource textColourConverter}}"
+                                                                   VerticalOptions="Center"
+                                                                   HorizontalOptions="Center"
+                                                                   >
+                                                            </Label>
+                                                        </Frame>
+                                                    </DataTemplate>
+                                                </BindableLayout.ItemTemplate>
+                                                <StackLayout.GestureRecognizers>
+                                                    <TapGestureRecognizer Tapped="EditEndClicked" CommandParameter="{Binding .}"></TapGestureRecognizer>
+                                                </StackLayout.GestureRecognizers>
+                                            </StackLayout>
+                                        </DataTemplate>
+                                    </BindableLayout.ItemTemplate>
+                                </StackLayout>
                             </StackLayout>
-                        </StackLayout>
-                    </DataTemplate>
-                </BindableLayout.ItemTemplate>
+                        </DataTemplate>
+                    </BindableLayout.ItemTemplate>
+                </StackLayout>
+                <Button Text="+ End" Clicked="AddEndClicked"></Button>
+                <Button Text="Save" Clicked="SaveButtonClicked"></Button>
             </StackLayout>
-            <Button Text="+ End" Clicked="AddEndClicked"></Button>
-            <Button Text="Save" Clicked="SaveButtonClicked"></Button>
-        </StackLayout>
         </ScrollView>
     </ContentPage.Content>
 </ContentPage>

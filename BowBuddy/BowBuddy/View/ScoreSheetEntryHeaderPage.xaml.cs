@@ -51,7 +51,7 @@ namespace BowBuddy.View
         {
             await Navigation.PushAsync(new ScoreSheetEntryPage
             {
-                BindingContext = new ScoreSheetEntryEndsViewModel(((ScoreSheetEntryHeaderViewModel)BindingContext).ScoreSheet)
+                BindingContext = new ScoreSheetEntryEndsViewModel(Navigation, ((ScoreSheetEntryHeaderViewModel)BindingContext).ScoreSheet)
             });
         }
     }

@@ -74,6 +74,31 @@ namespace BowBuddy.Model
         public Dictionary<string, Round> Rounds = new Dictionary<string, Round>();
         public List<string> RoundNames => RoundRegistry.Instance.Rounds.Keys.ToList();
 
+        private string[] ScoreOptionsImperial = new[] { "9", "7", "5", "3", "1", "M" };
+        private string[] ScoreOptionsMetric = new[] { "X", "9", "8", "7", "6", "5", "4", "3", "2", "1", "M" };
+        private string[] ScoreOptionsWorcester = new[] { "5", "4", "3", "2", "1", "M" };
+
+        public string[] ScoreOptions(Round round)
+        {
+            return ScoreOptions(round.Scoring);
+        }
+
+        public string[] ScoreOptions(string scoringStyle)
+        {
+            switch (scoringStyle)
+            {
+                case Round.ScoringStyleImperial:
+                    return ScoreOptionsImperial;
+                case Round.ScoringStyleMetric:
+                    return ScoreOptionsMetric;
+                case Round.ScoringStyleWorcester:
+                    return ScoreOptionsWorcester;
+                default:
+                    return null;
+            }
+            
+        }
+
         private void PopulateRegistry()
         {
             Rounds["Junior National"] = new Round
@@ -83,6 +108,16 @@ namespace BowBuddy.Model
                 {
                     new RoundDistance {Distance = new Measurement {Value = 40, Units = Round.UnitsYards}, Arrows = 48, FaceSize = new Measurement{Value = 122, Units = Round.UnitsCentimetres}},
                     new RoundDistance {Distance = new Measurement {Value = 30, Units = Round.UnitsYards}, Arrows = 24, FaceSize = new Measurement{Value = 122, Units = Round.UnitsCentimetres}}
+                }
+            };
+
+            Rounds["Short National"] = new Round
+            {
+                Name = "Short National",
+                Distances = new RoundDistance[2]
+                {
+                    new RoundDistance {Distance = new Measurement {Value = 50, Units = Round.UnitsYards}, Arrows = 48, FaceSize = new Measurement{Value = 122, Units = Round.UnitsCentimetres}},
+                    new RoundDistance {Distance = new Measurement {Value = 40, Units = Round.UnitsYards}, Arrows = 24, FaceSize = new Measurement{Value = 122, Units = Round.UnitsCentimetres}}
                 }
             };
 

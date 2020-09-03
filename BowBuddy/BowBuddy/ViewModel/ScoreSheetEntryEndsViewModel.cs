@@ -6,8 +6,11 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Text;
+using System.Windows.Input;
 using Xamarin.Forms;
 using BowBuddy.Annotations;
+using BowBuddy.View;
+using BowBuddy.ViewModel;
 using Xamarin.Forms.Internals;
 
 namespace BowBuddy.Model
@@ -15,7 +18,15 @@ namespace BowBuddy.Model
     public class ScoreSheetEntryEndsViewModel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
-        public readonly ScoreSheet ScoreSheet;
+        public ScoreSheet ScoreSheet { get; }
+
+        public string[] ScoreOptions { get; set; }
+
+        private Round Round;
+
+        public ICommand EditEnd { private set; get; }
+
+        public INavigation Navigation;
 
         public ObservableCollection<DistanceViewModel> Distances { get; set; } =
             new ObservableCollection<DistanceViewModel>();
@@ -44,22 +55,38 @@ namespace BowBuddy.Model
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        public ScoreSheetEntryEndsViewModel(ScoreSheet scoreSheet)
+        public ScoreSheetEntryEndsViewModel(INavigation navigation, ScoreSheet scoreSheet)
         {
+            Navigation = navigation;
             ScoreSheet = scoreSheet;
-            Round round;
             if (scoreSheet.RoundName != null && RoundRegistry.Instance.Rounds.ContainsKey(scoreSheet.RoundName))
             {
-                round = RoundRegistry.Instance.Rounds[scoreSheet.RoundName];
+                Round = RoundRegistry.Instance.Rounds[scoreSheet.RoundName];
             }
             else
             {
-                round = RoundRegistry.Instance.Rounds["Junior National"];
+                Round = RoundRegistry.Instance.Rounds["Junior National"];
             }
 
-            int scoreSheetEndCount = scoreSheet.Ends.Count;
+            ScoreOptions = RoundRegistry.Instance.ScoreOptions(Round);
 
-            foreach (var distance in round.Distances)
+            EditEnd = new Command<End>(async (End end) =>
+            {
+                var newModel = new ScoreSheetEntryEndEntryViewModel(ScoreSheet, end);
+
+                await Navigation.PushAsync(new ScoreSheetEntryEndsEntryPage
+                {
+                    BindingContext = newModel
+                });
+            });
+        }
+
+        public void Reload()
+        {
+            Distances.Clear();
+            int scoreSheetEndCount = ScoreSheet.Ends.Count;
+
+            foreach (var distance in Round.Distances)
             {
                 var dvm = new DistanceViewModel
                 {
@@ -67,13 +94,15 @@ namespace BowBuddy.Model
                 };
                 for (int i = 0; i < distance.Arrows / 6 && i < scoreSheetEndCount; i++)
                 {
-                    dvm.Scores.Add(new ObservableCollection<string>(scoreSheet.Ends[i].Scores));
+                    dvm.Scores.Add(new ObservableCollection<string>(ScoreSheet.Ends[i].Scores));
                 }
 
                 Distances.Add(dvm);
             }
 
             OnPropertyChanged("Distances");
+            OnPropertyChanged("ScoreSheet");
+            OnPropertyChanged("ScoreOptions");
         }
     }
 
